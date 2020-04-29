@@ -2,19 +2,16 @@
     <div class="Carousel">
         <h1 class="carousel-head">{{ msg }}</h1>
         <carousel/>
-        <Footer/>
     </div>
 </template>
 
 <script>
 import Carousel from '../components/Carousel.vue';
-import Footer from '../components/Footer.vue';
 
     export default {
         name: 'MouvieCarousel',
         components: {
-            Carousel,
-            Footer
+            Carousel
         },
         props: {
             msg: {

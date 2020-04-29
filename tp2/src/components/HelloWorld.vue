@@ -10,7 +10,7 @@ export default {
   props: {
     msg:{
       type: String,
-      default: "Projet Vue Js-->films carousel"
+      default: ""
     }
   }
 }
