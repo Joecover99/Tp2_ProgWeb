@@ -1,6 +1,13 @@
 <template>
     <div>
-        <h1>{{ movie.id }}</h1>
+        <h1>{{ movie.title }}</h1>
+        <img :src= movie.image alt="photo">
+        <p>{{ }}vote: (pas coder)</p>
+        <p>{{ movie.description }}</p>
+        <p>{{ movie.rating }}</p>
+        <p>{{ movie.length }}</p>
+        <p>{{ movie.release_year }}</p>
+        <p>{{ }} actor: (pas coder)</p>
     </div>
 </template>
 
@@ -10,12 +17,11 @@ import MoviesServices1 from '../services/MoviesService.js'
     export default {
         data() {
             return {
-               movie: null,
-               loading: false,
+                error: null,
+                movie: null,
             }
         },
         created () {
-                this.loading = true;
                 MoviesServices1.getMovie(this.$route.params.id)
                 .then(reponse =>{ 
                     this.movie = reponse.data.film;
@@ -24,7 +30,6 @@ import MoviesServices1 from '../services/MoviesService.js'
                 .catch(error => {
                     this.error = error;
                 })
-                .finally(() => this.loading = false);
         }
         
         
