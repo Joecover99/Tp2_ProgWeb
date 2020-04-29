@@ -26,6 +26,7 @@ export default {
         // let sortParams = `?$orderby=ModifiedDate%20desc`;
         return apiMovie.get('/' + RESSOURCE_NAME)
     },
+    
     getMovie(id) {
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id)
       }
