@@ -1,12 +1,14 @@
 <template>
     <div class="Carousel">
         <h1 class="carousel-head">{{ msg }}</h1>
-        <carousel/>
+        <carousel v-bind:movies="movies" :isActive="onLoad"/>
     </div>
 </template>
 
 <script>
 import Carousel from '../components/Carousel.vue';
+import MoviesServices from '../services/MoviesService.js';
+
 
     export default {
         name: 'MouvieCarousel',
@@ -18,16 +20,41 @@ import Carousel from '../components/Carousel.vue';
                 type: String,
                 default: "Film en vedette"
             },
+        },
+        
             data() {
                 return {
-                    mouvies:{
-                        type: Array,
-                        value:[]
-                    },
+                    movies: [],
+                    error: null,
+                    loading: false,
+                    isActive: {
+                        type: Boolean,
+                        value: false
+                    }
 
                 }
             },
-        },
+            computed: {
+                onLoad() {
+                    if(this.loading == false){
+                        return this.isActive
+                    }
+                    return false
+                }
+            },
+            created () {
+                this.loading = true;
+                MoviesServices.getMovies()
+                .then(reponse =>{ 
+                    this.movies = reponse.data;
+                })
+                
+                .catch(error => {
+                    this.error = error;
+                })
+                .finally(() => this.loading = false);
+
+            },
     }
 </script>
 

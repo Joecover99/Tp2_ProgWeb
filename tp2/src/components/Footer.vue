@@ -12,6 +12,6 @@
 
 <style lang="css" scoped>
     .Footer{
-        padding-top: 25%;
+        padding-top: 14%;
     }
 </style>

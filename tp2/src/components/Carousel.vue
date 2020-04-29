@@ -1,33 +1,15 @@
-<template>
+<template v-slot= default>
    
-      <agile :autoplay="true" :navButtons="false" :dots="false">
-        <div class="slide1">
-            <h3>slide 1</h3>
-            <h2>Titre: {{}}</h2>
-            <img src="../assets/logo.png" alt="photo"> 
-            <!-- a changer pour avoir lien de limage provenant de lapi -->
-            <p>cote membre: {{}}</p>
-            <p>synop.:{{}}</p>
-            <button>Detail</button>
-        </div>
-        
-        <div class="slide2">
-            <h3>slide 2</h3>
-              <h2>Titre: {{}}</h2>
-            <img src="../assets/logo.png" alt="photo"> 
-            <!-- a changer pour avoir lien de limage provenant de lapi -->
-            <p>cote membre: {{}}</p>
-            <p>synop.:{{}}</p>
-            <button>Detail</button>
-        </div>
-        <div class="slide3">
-            <h3>slide 3</h3>
-              <h2>Titre: {{}}</h2>
-            <img src="../assets/logo.png" alt="photo"> 
-            <!-- a changer pour avoir lien de limage provenant de lapi -->
-            <p>cote membre: {{}}</p>
-            <p>synop.:{{}}</p>
-            <button>Detail</button>
+      <agile v-if="isActive" :autoplay="true" :navButtons="false" :dots="false" :centerMode="true" :initialSlide='0'>
+        <div class="slide" v-for="movie in movies.data.slice(0,3)" :key="movie.id">
+            
+                <h2>{{ movie.title }}</h2>
+                <img :src="movie.image" alt="photo">
+                <p>cote(pas fait)</p>
+                <p>{{movie.description}}</p>
+                <button @click="onSelect(movie)">detail</button>
+
+            
         </div>
     </agile>
     
@@ -37,9 +19,25 @@
 import { VueAgile } from 'vue-agile'
 
 export default { 
+    
     components: {
         agile: VueAgile 
     },
+    props: {
+        movies: null,
+        isActive: {
+                type: Boolean,
+                default: true
+        }
+    },
+    methods: {
+        onSelect(movie) {
+            this.$router.push({ name: "movie", params: { id: movie.id} });
+                           
+        },
+
+    },
+    
     
     
 }
