@@ -20,6 +20,15 @@
             <p>synop.:{{}}</p>
             <button>Detail</button>
         </div>
+        <div class="slide3">
+            <h3>slide 3</h3>
+              <h2>Titre: {{}}</h2>
+            <img src="../assets/logo.png" alt="photo"> 
+            <!-- a changer pour avoir lien de limage provenant de lapi -->
+            <p>cote membre: {{}}</p>
+            <p>synop.:{{}}</p>
+            <button>Detail</button>
+        </div>
     </agile>
     
 </template>
