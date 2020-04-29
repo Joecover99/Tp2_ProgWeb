@@ -1,5 +1,5 @@
 <template>
-    <div class="Carousel">
+    <div class="movieCarousel">
         <h1 class="carousel-head">{{ msg }}</h1>
         <carousel v-bind:movies="movies" :isActive="onLoad"/>
     </div>

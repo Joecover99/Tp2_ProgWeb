@@ -1,7 +1,7 @@
 <template v-slot= default>
    
       <agile v-if="isActive" :autoplay="true" :navButtons="false" :dots="false" :centerMode="true" :initialSlide='0'>
-        <div class="slide" v-for="movie in movies.data.slice(0,3)" :key="movie.id">
+        <div class="slide" v-for="movie in movies.data.slice(0,3)" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
             
                 <h2>{{ movie.title }}</h2>
                 <img :src="movie.image" alt="photo">

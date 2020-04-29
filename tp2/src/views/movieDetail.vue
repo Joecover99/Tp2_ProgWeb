@@ -2,12 +2,12 @@
     <div>
         <h1>{{ movie.title }}</h1>
         <img :src= movie.image alt="photo">
-        <p>{{ }}vote: (pas coder)</p>
+        <p>{{ }}vote: (pas coder) etoile grise si pas de 5 crit</p>
         <p>{{ movie.description }}</p>
         <p>{{ movie.rating }}</p>
         <p>{{ movie.length }}</p>
         <p>{{ movie.release_year }}</p>
-        <p>{{ }} actor: (pas coder)</p>
+        <p>{{ }} actor: (pas coder) pas d'acteur dans api</p>
     </div>
 </template>
 
