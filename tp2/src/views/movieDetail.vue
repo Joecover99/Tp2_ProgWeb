@@ -18,6 +18,5 @@ import MakeViewDetail from '../components/MakeViewDetail.vue'
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
 </style>

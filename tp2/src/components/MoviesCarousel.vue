@@ -30,7 +30,7 @@ import MoviesServices from '../services/MoviesService.js';
                     isActive: {
                         type: Boolean,
                         value: false
-                    }
+                    },
 
                 }
             },
