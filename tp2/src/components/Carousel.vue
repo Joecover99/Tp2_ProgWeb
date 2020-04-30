@@ -7,7 +7,7 @@
                 <img :src="movie.image" alt="Affiche du film">
                 <p>cote(pas fait)</p>
                 <p> {{ sliceThis(movie.description) }} (...) </p>
-                <button @click="onSelect(movie)"><strong>details</strong></button>
+                <button @click="onSelect(movie)">detail</button>
             
         </div>
     </agile>

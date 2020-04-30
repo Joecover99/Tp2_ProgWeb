@@ -1,11 +1,17 @@
 <template>
-  <footer class="Footer">
-    <div>&copy; {{ new Date().getFullYear() }}</div>
-  </footer>
+    <div >
+        <p class="Footer">pied de page</p>
+    </div>
 </template>
+
+<script>
+    export default {
+        
+    }
+</script>
 
 <style lang="css" scoped>
     .Footer{
-        padding-top: 25%;
+        padding-top: 14%;
     }
 </style>
