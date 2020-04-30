@@ -53,7 +53,6 @@ import StarRating from 'vue-star-rating'
 
 <style lang="scss" scoped>
 .movieRating{
-    width: 100%;
     margin-left: 44%;
     margin-right: 56%; 
     margin-top: 1%;
