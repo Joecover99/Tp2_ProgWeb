@@ -20,6 +20,7 @@ apiMovie.interceptors.response.use(
 );
 
 const RESSOURCE_NAME = 'films';
+const ACTOR_CASE = 'actors';
 
 export default {
     getMovies(){
@@ -29,6 +30,10 @@ export default {
     
     getMovie(id) {
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id)
+      },
+
+    getMovieActors(id) {
+        return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + ACTOR_CASE)
       }
 
 }

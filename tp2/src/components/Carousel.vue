@@ -1,12 +1,13 @@
 <template v-slot= default>
    
       <agile v-if="isActive" :autoplay="true" :navButtons="false" :dots="false" :centerMode="true" :initialSlide='0'>
-        <div class="slide" v-for="movie in movies.data.slice(0,3)" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
+        <div class="slide" v-for="movie in movies.data.slice(0,20)" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
             
                 <h2>{{ movie.title }}</h2>
-                <img :src="movie.image" alt="photo">
+                <img :src="movie.image" alt="Affiche du film">
                 <p>cote(pas fait)</p>
-                <p>{{movie.description}}</p>
+                <p>{{ movie.description }}</p>
+                <p> manque logique pour Affiche les 100 prem carac avec (...)</p>
                 <button @click="onSelect(movie)">detail</button>
 
             
