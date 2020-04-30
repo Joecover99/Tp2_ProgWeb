@@ -2,7 +2,7 @@
     <div>
         <h1>{{ movie.title }}</h1>
         <img :src= movie.image alt="Affiche du film">
-        <p>{{ }}vote: (pas coder) etoile grise si pas de 5 crit</p>
+        <div class="movieRating" style="width: 100%;" ><star-rating v-model="rating" style="width: 100%;"></star-rating></div>
         <p>{{ movie.description }}</p>
         <p>{{ movie.rating }}</p>
         <p>{{ movie.length }} minutes</p>
@@ -19,8 +19,11 @@
 
 <script>
 import MoviesServices1 from '../services/MoviesService.js'
-
+import StarRating from 'vue-star-rating'
     export default {
+        components:{
+            StarRating
+        },
          data() {
             return {
                 error: null,
@@ -47,5 +50,10 @@ import MoviesServices1 from '../services/MoviesService.js'
 </script>
 
 <style lang="scss" scoped>
+.movieRating{
+    margin-left: 43%;
+    margin-right: 57%; 
+    margin-top: 1%;
+}
 
 </style>
