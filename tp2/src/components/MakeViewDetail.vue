@@ -2,17 +2,19 @@
     <div>
         <h1>{{ movie.title }}</h1>
         <img :src= movie.image alt="Affiche du film">
-        <div class="movieRating" style="width: 100%;" ><star-rating v-model="rating" style="width: 100%;"></star-rating></div>
-        <p>{{ movie.description }}</p>
-        <p>{{ movie.rating }}</p>
-        <p>{{ movie.length }} minutes</p>
-        <p>{{ movie.release_year }}</p>
+        <div class="movieRating" >
+            <star-rating v-model="rating"></star-rating>
+        </div>
+        <p><strong>Description :</strong> {{ movie.description }}</p>
+        <p><strong>Rated : </strong>{{ movie.rating }}</p>
+        <p><strong>Time : </strong>{{ movie.length }} minutes</p>
+        <p><strong>published : </strong>{{ movie.release_year }}</p>
         <h3>Acteurs:</h3>
             <div id="actors"  v-for="actor in actors" :key="actor.id" > 
                 <hr>
-                <p>Nom: {{actor.last_name}}</p>
-                <p>Prenom: {{actor.first_name}}</p>
-                <p>Date de naissance: {{actor.birthdate}}</p>
+                <p><strong>Last Name : </strong> {{actor.last_name}}</p>
+                <p><strong>First Name : </strong>{{actor.first_name}}</p>
+                <p><strong>Birth Date : </strong> {{actor.birthdate}}</p>
             </div>
     </div>
 </template>
@@ -51,8 +53,9 @@ import StarRating from 'vue-star-rating'
 
 <style lang="scss" scoped>
 .movieRating{
-    margin-left: 43%;
-    margin-right: 57%; 
+    width: 100%;
+    margin-left: 44%;
+    margin-right: 56%; 
     margin-top: 1%;
 }
 

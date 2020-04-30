@@ -1,8 +1,7 @@
 <template>
     <div class="Navbar">
-        <div>
-            <p>Recherche: </p>
-        <input v-model="Reshearch"/>
+        <div class="searchBar">
+            <Strong>Recherche: <input v-model="Reshearch"/></Strong>
         </div>
         <div :hidden='isHidden(Reshearch)'>
             <h4>Resultat</h4>
@@ -63,5 +62,9 @@ import NavBarResume from '../components/NavBarResume.vue';
 </script>
 
 <style lang="scss" scoped>
+
+.searchBar{
+    margin-top: 1%;
+}
 
 </style>

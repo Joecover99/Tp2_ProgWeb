@@ -8,7 +8,7 @@
                 <p>cote(pas fait)</p>
                 <p>{{ movie.description }}</p>
                 <p> manque logique pour Affiche les 100 prem carac avec (...)</p>
-                <button @click="onSelect(movie)">detail</button>
+                <button @click="onSelect(movie)">See more Details</button>
 
             
         </div>
