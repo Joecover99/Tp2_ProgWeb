@@ -55,7 +55,9 @@ import MoviesServices from '../services/MoviesService.js';
                 .finally(() => this.loading = false);
 
             },
-    }
+        methods: {
+
+        }}
 </script>
 
 <style lang="css" scoped>
