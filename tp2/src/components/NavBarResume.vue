@@ -2,11 +2,13 @@
     <div class="NavBarResume">
         <div v-for=" movie in searchMovies" :key="movie.id">
 
-                <h2>{{ movie.title }}</h2>
+                <h2>TtirL {{ movie.title }}</h2>
                 <img :src="movie.image" alt="Affiche du film">
                 <p>cote(pas fait)</p>
-                <p>{{ movie.description }}</p>
+                <p>Synopsis: {{ movie.description }}</p>
+                <p>Rating: {{movie.rating }}</p>
                 <p> manque logique pour Affiche les 100 prem carac avec (...)</p>
+                <p>Durée: {{movie.length }} Mins</p>
                 <button @click="onSelect(movie)">detail</button>
 
         </div>
