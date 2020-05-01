@@ -3,13 +3,11 @@
       <agile v-if="isActive" :autoplay="true" :navButtons="false" :dots="false" :centerMode="true" :initialSlide='0'>
         <div class="slide" v-for="movie in movies.data.slice(0,20)" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
             
-                <h2>{{ movie.title }}</h2>
+                <h2> {{ movie.title }}</h2>
                 <img :src="movie.image" alt="Affiche du film">
                 <p>cote(pas fait)</p>
-                <p>{{ movie.description }}</p>
-                <p> manque logique pour Affiche les 100 prem carac avec (...)</p>
-                <button @click="onSelect(movie)">See more Details</button>
-
+                <p> {{ sliceThis(movie.description) }} (...) </p>
+                <button @click="onSelect(movie)"><strong>details</strong></button>
             
         </div>
     </agile>
@@ -32,6 +30,13 @@ export default {
         }
     },
     methods: {
+
+
+        sliceThis(discription){
+            var tripDis = discription.slice(0,99);
+            return tripDis;
+        },
+
         onSelect(movie) {
             this.$router.push({ name: "movie", params: { id: movie.id} });
                            
