@@ -3,7 +3,7 @@
         <div v-for=" movie in searchMovies" :key="movie.id">
 
                 <h2>{{ movie.title }}</h2>
-                <img :src="movie.image" alt="Affiche du film">
+                <img :src="movie.image" @click="onSelect(movie)"  alt="Affiche du film">
                 <p>cote(pas fait)</p>
                 <p>Synopsis: {{ movie.description }}</p>
                 <p>Rating: {{movie.rating }}</p>
