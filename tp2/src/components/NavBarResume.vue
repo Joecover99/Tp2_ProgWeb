@@ -2,7 +2,7 @@
     <div class="NavBarResume">
         <div v-for=" movie in searchMovies" :key="movie.id">
 
-                <h2>{{ movie.title }}</h2>
+                <h2 @click="onSelect(movie)">{{ movie.title }}</h2>
                 <img :src="movie.image" @click="onSelect(movie)"  alt="Affiche du film">
                 <p>cote(pas fait)</p>
                 <p>Synopsis: {{ movie.description }}</p>
