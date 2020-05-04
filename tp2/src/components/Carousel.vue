@@ -5,7 +5,7 @@
      
                 <h2> {{ movie.title }}</h2>
                 <img :src="movie.image" alt="Affiche du film">
-                <p>{{ criti}}</p>
+                <p>cote(pas fait)</p>
                 <p> {{ sliceThis(movie.description) }} (...) </p>
                 <button @click="onSelect(movie)"><strong>details</strong></button>
             

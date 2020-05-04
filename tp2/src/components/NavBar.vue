@@ -51,7 +51,7 @@ import NavBarResume from '../components/NavBarResume.vue';
                 if(Reshearch == ""){
                     this.ischange = true
                 }
-                else{
+                else if(Reshearch.length >= 3){
                      this.ischange = false
                 }
                 return this.ischange
