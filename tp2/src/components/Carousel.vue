@@ -1,7 +1,7 @@
 <template v-slot= default>
    
       <agile v-if="isActive" :autoplay="true" :navButtons="false" :dots="false" :centerMode="true" :initialSlide='0'>
-        <div class="slide" v-for="movie in movies.data.slice(16,-1)" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
+        <div class="slide" v-for="movie in movies.data.slice(1)" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
             
                 <h2> {{ movie.title }}</h2>
                 <img :src="movie.image" alt="Affiche du film">
@@ -31,6 +31,7 @@ export default {
                 default: true
         }
     },
+    
     methods: {
         sliceThis(discription){
             var tripDis = discription.slice(0,99);
@@ -42,6 +43,14 @@ export default {
                            
         },
     },
+<<<<<<< HEAD
+=======
+    function:{
+
+    }
+    
+    
+>>>>>>> 78a55a028535a04eb5524681c668d86e4b6c7fbe
 }
 </script>
 

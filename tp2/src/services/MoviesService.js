@@ -21,11 +21,16 @@ apiMovie.interceptors.response.use(
 
 const RESSOURCE_NAME = 'films';
 const ACTOR_CASE = 'actors';
+const LAST_PAGE = '?page=6';
 
 export default {
     getMovies(){
         // let sortParams = `?$orderby=ModifiedDate%20desc`;
         return apiMovie.get('/' + RESSOURCE_NAME)
+    },
+    getMoviesLast(){
+        // let sortParams = `?$orderby=ModifiedDate%20desc`;
+        return apiMovie.get('/' + RESSOURCE_NAME + LAST_PAGE)
     },
 
     getMovie(id) {
@@ -35,8 +40,13 @@ export default {
     getMovieActors(id) {
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + ACTOR_CASE)
       },
+<<<<<<< HEAD
       
     getCritics(id){
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id)
     },
+=======
+
+
+>>>>>>> 78a55a028535a04eb5524681c668d86e4b6c7fbe
 }
