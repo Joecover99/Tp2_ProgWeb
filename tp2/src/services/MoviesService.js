@@ -40,6 +40,9 @@ export default {
     getMovieActors(id) {
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + ACTOR_CASE)
       },
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> c72d2c038542c75733c7d8f806a7597dd2accddc
 }

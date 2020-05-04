@@ -1,17 +1,16 @@
 <template>
     <div>
         <h1>{{ movie.title }}</h1>
-        <img :src= movie.image alt="Affiche du film">
-        <div class="movieRating" >
-            <star-rating v-model="rating"></star-rating>
-        </div>
-        <button> submit vote </button>
-        <p><strong>overall Rating: </strong>{{overAllRating}}/ 100</p>
-        <p><strong>number of votes : </strong>{{countNumberOfCritics}}</p>
-        <p><strong>Description :</strong> {{ movie.description }}</p>
-        <p><strong>Rated : </strong>{{ movie.rating }}</p>
-        <p><strong>Time : </strong>{{ movie.length }} minutes</p>
-        <p><strong>published : </strong>{{ movie.release_year }}</p>
+            <img :src= movie.image alt="Affiche du film">
+            <div class="movieRating" >
+                <star-rating v-model="rating"></star-rating>
+            </div>
+            <p><strong>overall Rating: </strong>{{overAllRating}}/ 100</p>
+            <p><strong>number of votes : </strong>{{countNumberOfCritics}}</p>
+            <p><strong>Description :</strong> {{ movie.description }}</p>
+            <p><strong>Rated : </strong>{{ movie.rating }}</p>
+            <p><strong>Time : </strong>{{ movie.length }} minutes</p>
+            <p><strong>published : </strong>{{ movie.release_year }}</p>
         <h3>Acteurs:</h3>
             <div id="actors"  v-for="actor in actors" :key="actor.id" > 
                 <hr>

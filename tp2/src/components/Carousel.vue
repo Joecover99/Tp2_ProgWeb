@@ -2,15 +2,13 @@
    
       <agile v-if="isActive" :autoplay="true" :navButtons="false" :dots="false" :centerMode="true" :initialSlide='0'>
         <div class="slide" v-for="movie in movies.data.slice(1)" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
-            
-                <h2> {{ movie.title }}</h2>
-                <img :src="movie.image" alt="Affiche du film">
-                <div class="movieRating" >
-                     <star-rating v-model="rating" read-only></star-rating>
-                </div>  
-                <p> {{ sliceThis(movie.description) }} (...) </p>
-                <button @click="onSelect(movie)"><strong>details</strong></button>
-            
+            <h2> {{ movie.title }}</h2>
+            <img :src="movie.image" alt="Affiche du film">
+            <div class="movieRating" >
+                    <star-rating v-model="rating" read-only></star-rating>
+            </div>  
+            <p> {{ sliceThis(movie.description) }} <strong v-if="movie.description.length > 100" > (...) </strong></p>
+            <button @click="onSelect(movie)"><strong>details</strong></button>
         </div>
     </agile>
 </template>
@@ -45,7 +43,6 @@ export default {
     },
 }
 </script>
-
 
 <style lang="scss" scoped>
 .movieRating{
