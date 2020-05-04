@@ -1,7 +1,7 @@
 <template v-slot= default>
    
       <agile v-if="isActive" :autoplay="true" :navButtons="false" :dots="false" :centerMode="true" :initialSlide='0'>
-        <div class="slide" v-for="movie in movies.data.slice(16,-1)" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
+        <div class="slide" v-for="movie in movies.data.slice(1)" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
             
                 <h2> {{ movie.title }}</h2>
                 <img :src="movie.image" alt="Affiche du film">
@@ -29,6 +29,7 @@ export default {
                 default: true
         }
     },
+    
     methods: {
 
 
@@ -43,7 +44,9 @@ export default {
         },
 
     },
-    
+    function:{
+
+    }
     
     
 }
