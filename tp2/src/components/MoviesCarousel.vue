@@ -18,7 +18,7 @@ import MoviesServices from '../services/MoviesService.js';
         props: {
             msg: {
                 type: String,
-                default: "Film en vedette"
+                default: "Nos 3 Film en vedette"
             },
         },
         

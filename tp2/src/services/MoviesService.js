@@ -39,5 +39,4 @@ export default {
     getCritics(id){
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id)
     },
-
 }

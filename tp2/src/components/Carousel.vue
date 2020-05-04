@@ -5,22 +5,24 @@
             
                 <h2> {{ movie.title }}</h2>
                 <img :src="movie.image" alt="Affiche du film">
-                <p>cote(pas fait)</p>
+                <div class="movieRating" >
+                     <star-rating v-model="rating" read-only></star-rating>
+                </div>  
                 <p> {{ sliceThis(movie.description) }} (...) </p>
                 <button @click="onSelect(movie)"><strong>details</strong></button>
             
         </div>
     </agile>
-    
 </template>
 
 <script>
 import { VueAgile } from 'vue-agile'
-
-export default { 
-    
+import StarRating from 'vue-star-rating'
+export default {    
     components: {
-        agile: VueAgile 
+        StarRating,
+        agile: VueAgile,
+        
     },
     props: {
         movies: null,
@@ -30,8 +32,6 @@ export default {
         }
     },
     methods: {
-
-
         sliceThis(discription){
             var tripDis = discription.slice(0,99);
             return tripDis;
@@ -41,15 +41,15 @@ export default {
             this.$router.push({ name: "movie", params: { id: movie.id} });
                            
         },
-
     },
-    
-    
-    
 }
 </script>
 
 
 <style lang="scss" scoped>
-
+.movieRating{
+    margin-left: 44%;
+    margin-right: 56%; 
+    margin-top: 1%;
+}
 </style>

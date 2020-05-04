@@ -3,7 +3,7 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <nav-bar/>
     <HelloWorld msg="Bienvenu sur l'API Films"/>
-    <movies-carousel msg="Film en vedette"/>
+    <movies-carousel msg="Nos 3 Film en vedette"/>
     <Footer/>
   </div>
 </template>
