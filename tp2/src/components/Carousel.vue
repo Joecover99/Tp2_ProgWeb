@@ -5,7 +5,7 @@
             
                 <h2> {{ movie.title }}</h2>
                 <img :src="movie.image" alt="Affiche du film">
-                <p>cote(pas fait)</p>
+                <p>{{cote()}}</p>
                 <p> {{ sliceThis(movie.description) }} (...) </p>
                 <button @click="onSelect(movie)"><strong>details</strong></button>
             
@@ -20,7 +20,7 @@ import { VueAgile } from 'vue-agile'
 export default { 
     
     components: {
-        agile: VueAgile 
+        agile: VueAgile,
     },
     props: {
         movies: null,
@@ -33,7 +33,15 @@ export default {
     methods: {
 
         cote(){
+            var score;
+            if(this.critics.length > 0){
+                for(this.critics.score in this.critics){
+                    score += this.critics.score
+                }
+                score = score / this.critics.length;
+            }
             
+            return score;
         },
 
         sliceThis(discription){
