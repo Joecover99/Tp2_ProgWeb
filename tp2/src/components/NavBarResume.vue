@@ -12,6 +12,7 @@
                 <button @click="onSelect(movie)">See more Details</button>
 
         </div>
+        <p :hidden="isNoResult">Aucun Resultat</p>
     </div>
 </template>
 
@@ -44,6 +45,13 @@
                         );
                         }
                         return filtered;
+                    },
+
+                    isNoResult(){
+                        if(this.keyword != "" && this.searchMovies.length == 0){
+                            return false
+                        }
+                        return true
                     }
                 },
             methods: {
