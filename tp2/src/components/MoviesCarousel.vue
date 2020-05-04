@@ -9,7 +9,6 @@
 import Carousel from '../components/Carousel.vue';
 import MoviesServices from '../services/MoviesService.js';
 
-
     export default {
         name: 'MouvieCarousel',
         components: {

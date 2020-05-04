@@ -40,13 +40,4 @@ export default {
     getMovieActors(id) {
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + ACTOR_CASE)
       },
-<<<<<<< HEAD
-      
-    getCritics(id){
-        return apiMovie.get('/' + RESSOURCE_NAME + '/' + id)
-    },
-=======
-
-
->>>>>>> 78a55a028535a04eb5524681c668d86e4b6c7fbe
 }
