@@ -43,14 +43,6 @@ export default {
                            
         },
     },
-<<<<<<< HEAD
-=======
-    function:{
-
-    }
-    
-    
->>>>>>> 78a55a028535a04eb5524681c668d86e4b6c7fbe
 }
 </script>
 
