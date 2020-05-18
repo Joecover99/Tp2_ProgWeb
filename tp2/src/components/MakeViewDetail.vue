@@ -21,14 +21,21 @@
         <h3> Comments : </h3>
             <div id="comments">
                 <div class="comment-form">
-                    <p> {{critics.comment}} </p>    
                     <textarea class="author1" type="text" v-model="author" placeholder="Author Name"></textarea>
-                    <textarea type="text" v-model="comment" placeholder="Write your comment about the movie"></textarea>
+                    <star-rating v-model="rating"></star-rating>
+                    <textarea type="text" v-model="comment" placeholder="Write your comment about the movie" :maxlength="255"></textarea>
                     <button @click: addComment>Add Comment</button>
+                    
                  </div>
-               <div v-repeat="critics" class="comments-box">
-                   <p> Comment Done by: <strong> {{critics.critic_first_name}} {{critics.critic_last_name}}</strong></p>
-                   <p> {{critics.comment}} </p>
+                <div v-for="critics in critics" :key="critics.id" class="comments-box">
+                    <div> 
+                        <p> {{critics.comment}} </p>
+                        <p> Comment Done by: <strong> {{critics.critic_first_name}} {{critics.critic_last_name}}</strong></p> 
+                        <span>{{ critics.creation_date | moment("D MMM YYYY") }}</span>
+                        <br>
+                        <button id="editButton" @click: addComment>Edit Comment</button>
+                    </div>
+                    <br>
                     <!--<p v-html="content | marked" class="content-comment"></p>
                     <button @click: removeComment(this)> Delete</button>-->
                 </div>
@@ -114,6 +121,11 @@ import StarRating from 'vue-star-rating'
 </script>
 
 <style lang="scss" scoped>
+.loginhref{
+    float: right;
+    padding-right: 5%;
+}
+
 .movieRating{
     margin-left: 44%;
     margin-right: 56%; 
@@ -155,6 +167,12 @@ button{
     border: 0;
     padding: 5px;
     cursor: pointer;
+}
+
+#editButton{
+    background: rgb(116, 116, 116);
+    float: right;
+    
 }
 
 /*Comment Box*/
