@@ -22,7 +22,7 @@
             <div id="comments">
                 <div class="comment-form">
                     <textarea class="author1" type="text" v-model="author" placeholder="Author Name"></textarea>
-                    <star-rating v-model="rating"></star-rating>
+                    <star-rating @rating-selected ="setRating" v-bind:increment="0.5" v-bind:max-rating="5" v-model="rating"></star-rating>
                     <textarea type="text" v-model="comment" placeholder="Write your comment about the movie" :maxlength="255"></textarea>
                     <button @click: addComment>Add Comment</button>
                     
@@ -36,8 +36,6 @@
                         <button id="editButton" @click: addComment>Edit Comment</button>
                     </div>
                     <br>
-                    <!--<p v-html="content | marked" class="content-comment"></p>
-                    <button @click: removeComment(this)> Delete</button>-->
                 </div>
             </div>
            
