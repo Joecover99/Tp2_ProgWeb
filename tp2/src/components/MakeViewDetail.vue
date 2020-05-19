@@ -17,9 +17,8 @@
                 <p><strong>Last Name : </strong> {{actor.last_name}}</p>
                 <p><strong>First Name : </strong>{{actor.first_name}}</p>
                 <p><strong>Birth Date : </strong> {{actor.birthdate}}</p>
-            </div>  
-            
-           <Comment v-bind:Comment="critcs"/>
+            </div>    
+           <Comment v-bind:critics="critics"/>
            
     </div>
 </template>
