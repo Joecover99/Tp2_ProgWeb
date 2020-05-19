@@ -21,7 +21,7 @@ apiMovie.interceptors.response.use(
 
 const RESSOURCE_NAME = 'films';
 const ACTOR_CASE = 'actors';
-//const Comments_Data = 'comments'
+const Comment= 'comment'
 const LAST_PAGE = '?page=6';
 
 export default {
@@ -41,7 +41,7 @@ export default {
     getMovieActors(id) {
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + ACTOR_CASE)
       },
-    /*getComments(id){
-        return apiMovie.get('/' + RESSOURCE_NAME + '/' + ID + '/' + Comments) 
-    }*/
+    getComments(id){
+        return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + Comment) 
+    }
 }
