@@ -9,17 +9,20 @@
                 <p>cote(pas fait)</p>
                 <p>Synopsis: {{ movie.description.slice(0,100) }}</p>
                 <p>Rating: {{movie.rating }}</p>
+<<<<<<< HEAD
+=======
+                <p> manque logique pour Affiche les 100 prem carac avec <strong v-if="movie.description.length > 100"> (...) </strong></p>
+>>>>>>> master
                 <p>Durée: {{movie.length }} Mins</p>
                 <button @click="onSelect(movie)">See more Details</button>
         </div>
+        <p :hidden="isNoResult">Aucun Resultat</p>
     </div>
 </template>
 
 <script>
     export default {
-        
         data() {
-
             return {
                 ischange: {
                     type: Boolean,
@@ -48,6 +51,13 @@
                         );
                         }
                         return filtered;
+                    },
+
+                    isNoResult(){
+                        if(this.keyword != "" && this.searchMovies.length == 0){
+                            return false
+                        }
+                        return true
                     }
                 },
             methods: {

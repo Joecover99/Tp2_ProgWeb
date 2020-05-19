@@ -54,10 +54,10 @@ import NavBarResume from '../components/NavBarResume.vue';
                 else if(Reshearch.length >= 3){
                      this.ischange = false
                 }
-                return this.ischange
-            }
-        },
+                return this.ischange;
+            },
         
+        }
     }
 </script>
 

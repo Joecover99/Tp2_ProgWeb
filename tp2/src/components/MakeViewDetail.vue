@@ -1,24 +1,27 @@
 <template>
     <div>
         <h1>{{ movie.title }}</h1>
-        <img :src= movie.image alt="Affiche du film">
-        <div class="movieRating" >
-            <star-rating v-model="rating"></star-rating>
-        </div>
-        <button> submit vote </button>
-        <p><strong>overall Rating: </strong>{{overAllRating}}/ 100</p>
-        <p><strong>number of votes : </strong>{{countNumberOfCritics}}</p>
-        <p><strong>Description :</strong> {{ movie.description }}</p>
-        <p><strong>Rated : </strong>{{ movie.rating }}</p>
-        <p><strong>Time : </strong>{{ movie.length }} minutes</p>
-        <p><strong>published : </strong>{{ movie.release_year }}</p>
-        <h3>Acteurs:</h3>
+            <img :src= movie.image alt="Affiche du film">
+            <div class="movieRating" >
+                <star-rating v-model="rating"></star-rating>
+            </div>
+            <p><strong>overall Rating: </strong>{{overAllRating}}/ 100</p>
+            <p><strong>number of votes : </strong>{{countNumberOfCritics}}</p>
+            <p><strong>Description :</strong> {{ movie.description }}</p>
+            <p><strong>Rated : </strong>{{ movie.rating }}</p>
+            <p><strong>Time : </strong>{{ movie.length }} minutes</p>
+            <p><strong>published : </strong>{{ movie.release_year }}</p>
+        <h3>Actors:</h3>
             <div id="actors"  v-for="actor in actors" :key="actor.id" > 
                 <hr>
                 <p><strong>Last Name : </strong> {{actor.last_name}}</p>
                 <p><strong>First Name : </strong>{{actor.first_name}}</p>
                 <p><strong>Birth Date : </strong> {{actor.birthdate}}</p>
-            </div>  
+            </div>    
+           <Comment v-bind:critics="critics"/>
+           
+
+           
     </div>
 </template>
 
@@ -26,10 +29,13 @@
 import MoviesServices1 from '../services/MoviesService.js'
 import MoviesServices2 from '../services/MoviesService.js'
 import StarRating from 'vue-star-rating'
+import Comment from '../components/Comments.vue'
+
 
     export default {
         components:{
             StarRating,
+            Comment
         },
          data() {
             return {
@@ -37,10 +43,13 @@ import StarRating from 'vue-star-rating'
                 movie: null,
                 actors: null,
                 score: null,
+                critic_first_name: null,
+                critic_last_name: null,
                 critics: [],
+                comments: [],
             }
          },
-
+         
         computed:{ 
             countNumberOfCritics(){
                 return this.critics.length;                 
@@ -70,7 +79,13 @@ import StarRating from 'vue-star-rating'
                 .then(reponse =>{
                     this.critics = reponse.data.critic;
                     console.log(reponse.data.critic);
-                })
+                });
+               MoviesServices2.getComments(this.$route.params.id)
+                .then(reponse =>{
+                    this.comments = reponse.data.bpi;
+                    console.log(reponse.data.bpi);
+                });
+
         }
     }
 </script>
