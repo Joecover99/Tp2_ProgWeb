@@ -20,6 +20,8 @@
             </div>    
            <Comment v-bind:critics="critics"/>
            
+
+           
     </div>
 </template>
 
@@ -33,7 +35,7 @@ import Comment from '../components/Comments.vue'
     export default {
         components:{
             StarRating,
-            Comment,
+            Comment
         },
          data() {
             return {
