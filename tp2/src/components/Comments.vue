@@ -2,12 +2,12 @@
     <div class="commentSection">
         <h3> Comments : </h3>
             <div id="comments">
-                <!-- <div class="comment-form">
+                <div class="comment-form">
                     <textarea class="author1" type="text" v-model="author" placeholder="Author Name"></textarea>
                     <star-rating @rating-selected ="setRating" v-bind:increment="0.5" v-bind:max-rating="5" v-model="rating"></star-rating>
                     <textarea type="text" v-model="comment" placeholder="Write your comment about the movie" :maxlength="255"></textarea>
                     <button @click: addComment>Add Comment</button>
-                </div> -->
+                </div> 
                 <div v-for="critics in critics" :key="critics.id" class="comments-box">
                     <div> 
                         <p> {{critics.comment}} </p>
@@ -24,11 +24,11 @@
 
 <script>
 
-// import StarRating from 'vue-star-rating'
+ import StarRating from 'vue-star-rating'
 
     export default {
          components:{
-            // StarRating,
+            StarRating,
         },
 
         data() {
