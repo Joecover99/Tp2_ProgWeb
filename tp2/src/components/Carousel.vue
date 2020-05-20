@@ -6,7 +6,7 @@
                 <h2> {{ movie.title }}</h2>
                 <img :src="movie.image" alt="Affiche du film">
                 <div class="movieRating" >
-                     <star-rating v-model="rating" read-only></star-rating>
+                     <star-rating v-model="rating" read-only>{{cote()}}</star-rating>
                 </div>  
                 <p> {{ sliceThis(movie.description) }} (...) </p>
                 <button @click="onSelect(movie)"><strong>details</strong></button>
@@ -35,19 +35,18 @@ export default {
     methods: {
 
         cote(){
-            var score;
-            if(this.critics.length > 0){
-                for(this.critics.score in this.critics){
-                    score += this.critics.score
+            var score = null;
+            if(this.critics.length() > 0){
+                for(this.critic in this.critics){
+                    score += this.critic.score
                 }
-                score = score / this.critics.length;
+                score = score / this.critics.length();
             }
-            
             return score;
         },
 
         sliceThis(discription){
-            var tripDis = discription.slice(0,99);
+            var tripDis = discription.slice(0,100);
             return tripDis;
         },
 
