@@ -5,6 +5,7 @@
         Mot De Passe <input type="password" name="password" placeholder="Password" value="Mot De Passe" v-model="password" @keyup.enter="logIn">
         <br>
       <button @click="logIn" >Log in</button>
+      <p v-show="errorMessage">Mauvais Loggin/ Mot De Passe</p>
         </div>
         <div v-show="this.$parent.userIsAuth">
             <p>Bonjour : {{ logged_user }}</p>
@@ -32,6 +33,7 @@
                     type: String,
                     default: "0000"
                     },
+                errorMessage: false,
             }
         },
         methods: {
@@ -39,9 +41,14 @@
                 if (this.login == this.ADMIN_LOG.default && this.password == this.ADMIN_PASS.default) {
                     this.logged_user = this.login
                     this.logged_pass = this.password
+                    this.errorMessage = false
                     this.$emit('Login::userIsAuth', {loginResult: true})
                 }
-            return false
+                else{
+                    this.errorMessage = true 
+                    return false
+                }
+           
             }
         },
         
