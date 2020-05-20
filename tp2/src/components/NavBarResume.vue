@@ -51,10 +51,14 @@
                     }
                 },
             methods: {
-            onSelect(movie) {
-                this.$router.push({ name: "movie", params: { id: movie.id} });
-                            
-            },
+             onSelect(movie) {
+            if (this.$parent.$parent.$parent.userIsAuth == true) {
+                this.$router.push({ name: "movie2", params: { id: movie.id} });
+            }
+            else{
+                 this.$router.push({ name: "movie", params: { id: movie.id} });
+            }               
+        },
         }
     }
 </script>

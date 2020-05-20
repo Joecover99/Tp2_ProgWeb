@@ -43,10 +43,7 @@ export default {
             }
             else{
                  this.$router.push({ name: "movie", params: { id: movie.id} });
-            }
-           
-           
-                           
+            }               
         },
 
     },
