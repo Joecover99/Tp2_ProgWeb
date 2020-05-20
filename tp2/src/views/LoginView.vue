@@ -1,9 +1,15 @@
 <template>
     <div class="Login">
-        Login <input type="text" name="username" placeholder="Username">
-        Mot De Passe <input type="password" name="password" placeholder="Password">
+        <div :hidden="this.$parent.userIsAuth">
+            Login <input type="text" name="username" placeholder="Username" value="Utilisateur" v-model="login" @keyup.enter="logIn">
+        Mot De Passe <input type="password" name="password" placeholder="Password" value="Mot De Passe" v-model="password" @keyup.enter="logIn">
         <br>
-      <button @click="logIn">Log in</button>
+      <button @click="logIn" >Log in</button>
+        </div>
+        <div v-show="this.$parent.userIsAuth">
+            <p>Bonjour : {{ logged_user }}</p>
+        </div>
+        
     </div>
 </template>
 
@@ -11,17 +17,34 @@
     export default {
         name: "login",
         
+        
         data() {
             return {
-                // login,
-                // password,
+                login: "",
+                password: "",
+                logged_user: null,
+                logged_pass: null,
+                ADMIN_LOG: {
+                    type: String,
+                    default: "ADMIN"
+                    },
+                ADMIN_PASS: {
+                    type: String,
+                    default: "0000"
+                    },
             }
         },
         methods: {
             logIn() {
-            this.$emit('Login::userIsAuth', {loginResult: true})
+                if (this.login == this.ADMIN_LOG.default && this.password == this.ADMIN_PASS.default) {
+                    this.logged_user = this.login
+                    this.logged_pass = this.password
+                    this.$emit('Login::userIsAuth', {loginResult: true})
+                }
+            return false
             }
         },
+        
     }
 </script>
 
