@@ -3,10 +3,37 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
+      <router-link to="/login" :hidden="userIsAuth">Login</router-link> |
+      <button @click="userIsAuth = false" v-show="userIsAuth">Logout</button>
+      
     </div>
-    <router-view/>
+    <router-view @Login::userIsAuth="changeLoginResult"/>
   </div>
 </template>
+
+<script>
+    export default {
+
+      data() {
+        return {
+          userIsAuth: false,
+        }
+      },
+
+       methods: {
+          changeLoginResult({loginResult}) {
+            this.userIsAuth = loginResult
+          }
+       },
+
+       computed: {
+          isLogged() {
+            return this.userIsAuth
+          }
+        }, 
+    }
+</script>
+
 
 <style>
 #app {
