@@ -5,7 +5,7 @@
         Mot De Passe <input type="password" name="password" placeholder="Password" value="Mot De Passe" v-model="password" @keyup.enter="logIn">
         <br>
       <button @click="logIn" >Log in</button>
-      <p v-show="errorMessage">Mauvais Loggin/ Mot De Passe</p>
+      <p v-show="errorMessage">Mauvais Loggin / Mot De Passe</p>
         </div>
         <div v-show="this.$parent.userIsAuth">
             <p>Bonjour : {{ logged_user }}</p>
