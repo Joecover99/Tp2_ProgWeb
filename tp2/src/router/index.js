@@ -32,7 +32,13 @@ Vue.use(VueRouter)
     name: 'movie',
     component: () => import('../views/movieDetail.vue'),
     props: castRouteParamsId
-  }
+  },
+  {
+    path: '/filmsAdmin/:id',
+    name: 'movie2',
+    component: () => import('../views/movieDetailAdmin.vue'),
+    props: castRouteParamsId
+  },
   
 ]
 
