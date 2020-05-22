@@ -58,20 +58,14 @@
                     }
                 },
             methods: {
-            onSelect(movie) {
-                this.$router.push({ name: "movie", params: { id: movie.id} });
-                            
-            },
-
-            isHidden(Reshearch) {
-                if(Reshearch == null){
-                    this.ischange = true
-                }
-                else{
-                     this.ischange = false
-                }
-                return this.ischange
+             onSelect(movie) {
+            if (this.$parent.$parent.$parent.userIsAuth == true) {
+                this.$router.push({ name: "movie2", params: { id: movie.id} });
             }
+            else{
+                 this.$router.push({ name: "movie", params: { id: movie.id} });
+            }               
+        },
         }
     }
 </script>
