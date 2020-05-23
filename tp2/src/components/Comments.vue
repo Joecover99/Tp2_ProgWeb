@@ -52,7 +52,7 @@
         methods:{
             addComment(){
                 if(this.critics.id && this.critics.comment){
-                    this.critics.comments.push({author: this.critics.critic_first_name + this.crtitics.critic_last_name, content: this.critics.comment})
+                    this.critics.push({author: this.critics.critic_first_name + this.crtitics.critic_last_name, content: this.critics.comment})
                 }else{
                     alert('Fields Empty');
                 }
