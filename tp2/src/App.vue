@@ -3,11 +3,12 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/login" :hidden="userIsAuth">Login</router-link> |
+      <router-link to="/login" :hidden="userIsAuth || userIsConnected">Login</router-link> |
       <button @click="userIsAuth = false" v-show="userIsAuth">Logout</button>
+      <button @click="userIsConnected = false" v-show="userIsConnected">Logout</button>
       
     </div>
-    <router-view @Login::userIsAuth="changeLoginResult"/>
+    <router-view @Login::userIsAuth="changeLoginResult" @LoginU::userIsConnected="changeLoginUResult"/>
   </div>
 </template>
 
@@ -17,19 +18,28 @@
       data() {
         return {
           userIsAuth: false,
+          userIsConnected: false,
         }
       },
 
        methods: {
           changeLoginResult({loginResult}) {
             this.userIsAuth = loginResult
+          },
+
+          changeLoginUResult({loginResult}) {
+            this.userIsConnected = loginResult
           }
        },
 
        computed: {
           isLogged() {
             return this.userIsAuth
-          }
+          },
+          isRegister() {
+            return this.userIsConnected
+          },
+
         }, 
     }
 </script>
