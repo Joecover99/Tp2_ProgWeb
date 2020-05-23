@@ -1,6 +1,6 @@
 <template>
     <div class="Login">
-        <div :hidden="this.$parent.userIsAuth">
+        <div :hidden="this.$parent.userIsAuth || this.$parent.userIsConnected">
             Login <input type="text" name="username" placeholder="Username" value="Utilisateur" v-model="login" maxlength="50" @keyup.enter="logIn">
         Mot De Passe <input type="password" name="password" placeholder="Password" value="Mot De Passe" v-model="password" maxlength="50" @keyup.enter="logIn">
         <br>
@@ -54,7 +54,10 @@
                     this.errorMessage = true 
                     return false
                 }
-           
+                this.goto();
+            },
+            goto(){
+                 this.$router.push({ name: "Home"});
             }
         },
         
