@@ -44,7 +44,13 @@ export default {
     getComments(id){
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + Comment) 
     },
+    createCritic(id){
+        return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + Comment)   
+    },
 
+    modifieCritic(id, crit){
+        return apiMovie.put('/' + RESSOURCE_NAME + '/' + id + '/' + Comment + '/' + crit)
+    },
     getUser(user) {
         return apiMovie.get('/' + USERS + '/' + user)
     },
