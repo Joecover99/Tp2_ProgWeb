@@ -19,6 +19,7 @@ apiMovie.interceptors.response.use(
     }
 );
 
+const USERS = 'users';
 const RESSOURCE_NAME = 'films';
 const ACTOR_CASE = 'actors';
 const Comment= 'comment'
@@ -43,5 +44,22 @@ export default {
       },
     getComments(id){
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + Comment) 
+    },
+
+    getUser(user) {
+        return apiMovie.get('/' + USERS + '/' + user)
+    },
+    verifyUser(user){
+        return apiMovie.get('/' + USERS + '/' + user + 'verify')
+    },
+    createUser(){
+        return apiMovie.post('/' + USERS)
+    },
+    modifyUser(user){
+        return apiMovie.put('/' + USERS + '/' + user)
+    }, 
+    modifyUserPassword(user, password){
+        return apiMovie.put('/' + USERS + '/' + user + '/' + password)
     }
+
 }
