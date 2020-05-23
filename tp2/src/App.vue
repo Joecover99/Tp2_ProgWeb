@@ -6,7 +6,7 @@
       <router-link to="/createUser" :hidden="userIsAuth || userIsConnected">Register | </router-link> 
       <router-link to="/login" :hidden="userIsAuth || userIsConnected">Login | </router-link> 
       <button @click="userIsAuth = false" v-show="userIsAuth">Logout</button>
-      <button @click="userIsConnected = false" v-show="userIsConnected">Logout</button>
+    <button id="logout" @click="userIsConnected = false" v-show="userIsConnected">Logout</button>
       
     </div>
     <router-view @Login::userIsAuth="changeLoginResult" @LoginU::userIsConnected="changeLoginUResult"/>
@@ -68,5 +68,13 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+#logout{
+    font-weight: bold;
+    background: #333;
+    color: #ccc;
+    border: 0;
+    padding: 2px;
 }
 </style>
