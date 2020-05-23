@@ -34,18 +34,15 @@ export default {
         // let sortParams = `?$orderby=ModifiedDate%20desc`;
         return apiMovie.get('/' + RESSOURCE_NAME + LAST_PAGE)
     },
-
     getMovie(id) {
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id)
       },
-
     getMovieActors(id) {
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + ACTOR_CASE)
       },
     getComments(id){
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + Comment) 
     },
-
     getUser(user) {
         return apiMovie.get('/' + USERS + '/' + user)
     },
