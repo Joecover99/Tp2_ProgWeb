@@ -6,17 +6,17 @@
             <label class="form__label">Prenom</label>
             <input class="form__input" v-model.trim="$v.fName.$model"/>
         </div>
-        <div class="error" v-if="!$v.fName.required">Prenom Requit</div>
-        <div class="error" v-if="!$v.fName.maxLength">Prenom trop long</div>
-        <div class="error" v-if="!$v.fName.minLength">Prenom trop coure</div>
+        <div class="error" v-if="!$v.fName.required">First name is required</div>
+        <div class="error" v-if="!$v.fName.maxLength">First name is too long</div>
+        <div class="error" v-if="!$v.fName.minLength">First name is too short</div>
 
         <div class="form-group" :class="{ 'form-group--error': $v.lName.$error }">
             <label class="form__label">Nom de famille</label>
             <input class="form__input" v-model.trim="$v.lName.$model"/>
         </div>
-        <div class="error" v-if="!$v.lName.required">Nom de famille requit</div>
-        <div class="error" v-if="!$v.fName.maxLength">Nom de famille trop long</div>
-        <div class="error" v-if="!$v.fName.minLength">Nom de famille trop coure</div>
+        <div class="error" v-if="!$v.lName.required">Last name is required</div>
+        <div class="error" v-if="!$v.fName.maxLength">Last name is too long</div>
+        <div class="error" v-if="!$v.fName.minLength">Last name is too short</div>
 
 
         //Username ------------------------
@@ -24,40 +24,40 @@
             <label class="form__label">Nom d'utilisateur</label>
             <input class="form__input" v-model.trim="$v.username.$model"/>
         </div>
-        <div class="error" v-if="!$v.lName.required">Nom d'utilisateur requit</div>
-        <div class="error" v-if="!$v.fName.maxLength">Nom d'utilisateur trop long</div>
-        <div class="error" v-if="!$v.fName.minLength">Nom d'utilisateur trop coure</div>
+        <div class="error" v-if="!$v.lName.required">UserName is required</div>
+        <div class="error" v-if="!$v.fName.maxLength">UserName is too long</div>
+        <div class="error" v-if="!$v.fName.minLength">UserName is too short</div>
 
         //Password -----------------------
         <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
             <label class="form__label">Mot de passe</label>
-            <input class="form__input" v-model.trim="$v.password.$model"/>
+            <input class="form__input" type="password" v-model.trim="$v.password.$model"/>
         </div>
-        <div class="error" v-if="!$v.lName.required">mot de passe requit</div>
-        <div class="error" v-if="!$v.fName.maxLength">mot de passe trop long</div>
-        <div class="error" v-if="!$v.fName.maxLength">mot de passe trop coure</div>
+        <div class="error" v-if="!$v.lName.required">Password is required</div>
+        <div class="error" v-if="!$v.fName.maxLength">Password is too long</div>
+        <div class="error" v-if="!$v.fName.maxLength">Password is too short</div>
 
         <div class="form-group" :class="{ 'form-group--error': $v.passwordConfimation.$error }">
             <label class="form__label">Confirmation</label>
-            <input class="form__input" v-model.trim="$v.passwordConfimation.$model"/>
+            <input class="form__input" type="password" v-model.trim="$v.passwordConfimation.$model"/>
         </div>
-        <div class="error" v-if="!$v.lName.sameAsPassword">confirmation doit etre le meme</div>
+        <div class="error" v-if="!$v.lName.sameAsPassword">The password is not the same</div>
 
         //Email ----------------------------
         <div class="form-group" :class="{ 'form-group--error': $v.email.$error }">
             <label class="form__label">Courriel</label>
             <input class="form__input" v-model.trim="$v.email.$model"/>
         </div>
-        <div class="error" v-if="!$v.lName.required">Courriel requit</div>
-        <div class="error" v-if="!$v.fName.maxLength">Courriel trop long</div>
-        <div class="error" v-if="!$v.fName.email">Courriel n'existe pas</div>
+        <div class="error" v-if="!$v.lName.required">Email is required</div>
+        <div class="error" v-if="!$v.fName.maxLength">Email is too short</div>
+        <div class="error" v-if="!$v.fName.email">Courriel does not exist</div>
 
         //Button confirmation --------------
         <button class="button" type="submit" :disabled="submitStatus === 'PENDING'">Submit!</button>
 
-        <p class="typo__p" v-if="submitStatus === 'OK'">Inscription reussi</p>
-        <p class="typo__p" v-if="submitStatus === 'ERROR'">Assure vous que tout est bien remplit</p>
-        <p class="typo__p" v-if="submitStatus === 'PENDING'">En confimation...</p>
+        <p class="typo__p" v-if="submitStatus === 'OK'">Registration successful</p>
+        <p class="typo__p" v-if="submitStatus === 'ERROR'">Make sure everything is filled</p>
+        <p class="typo__p" v-if="submitStatus === 'PENDING'">Pending for confirmation...</p>
     </form>
 
 </template>

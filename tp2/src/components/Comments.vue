@@ -8,7 +8,7 @@
                     <textarea type="text" v-model="comment" placeholder="Write your comment about the movie" :maxlength="255"></textarea>
                     <button @click: addComment>Add Comment</button>
                 </div> 
-                <div v-for="critics in critics" :key="critics.id" class="comments-box">
+                 <div v-for="critics in orderedComments" :key="critics.id + 1" class="comments-box"> 
                     <div> 
                         <p> {{critics.comment}} </p>
                         <p> Comment Done by: <strong> {{critics.critic_first_name}} {{critics.critic_last_name}}</strong></p> 
@@ -25,6 +25,7 @@
 <script>
 
  import StarRating from 'vue-star-rating'
+ import _ from 'lodash'
 
     export default {
          components:{
@@ -35,8 +36,20 @@
             return{
                 critic_first_name: null,
                 critic_last_name: null,
+               //  mockReviews: MOCK_REVIEWS,
             }
          },
+
+        computed: {
+            orderedComments: function () {
+                return _.orderBy(this.critics, 'creation_date', ['desc'])
+            },
+            /*reviews () {
+                return this.mockReviews.filter(review => {
+                    return movie.movie_id === this.movie
+                })
+            }*/
+        },
 
          props: {
              comment: {
@@ -50,13 +63,30 @@
          },
         
         methods:{
-            addComment(){
+           /* addReview () {
+                if (!this.movie || !this.review.reviewer || !this.review.content) {
+                    return
+                }
+                let review = {
+                    movie_id: this.movie, 
+                    content: this.review.content, 
+                    reviewer: this.review.reviewer, 
+                    time: new Date().toLocaleDateString()
+                }
+                this.mockReviews.unshift(review)
+                }*/
+           /* addComment(){
                 if(this.critics.id && this.critics.comment){
                     this.critics.push({author: this.critics.critic_first_name + this.crtitics.critic_last_name, content: this.critics.comment})
                 }else{
                     alert('Fields Empty');
                 }
-            }
+            },
+            editComment(){
+                if(this.critic.id && this.critics.comment){
+
+                }
+            }*/
             },
             /*    
                 removeComment: function (index){
