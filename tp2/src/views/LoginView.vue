@@ -1,8 +1,8 @@
 <template>
     <div class="Login">
         <div :hidden="this.$parent.userIsAuth">
-            Login <input type="text" name="username" placeholder="Username" value="Utilisateur" v-model="login" @keyup.enter="logIn">
-        Mot De Passe <input type="password" name="password" placeholder="Password" value="Mot De Passe" v-model="password" @keyup.enter="logIn">
+            Login <input type="text" name="username" placeholder="Username" value="Utilisateur" v-model="login" maxlength="50" @keyup.enter="logIn">
+        Mot De Passe <input type="password" name="password" placeholder="Password" value="Mot De Passe" v-model="password" maxlength="50" @keyup.enter="logIn">
         <br>
       <button @click="logIn" >Log in</button>
       <p v-show="errorMessage">Mauvais Loggin / Mot De Passe</p>
