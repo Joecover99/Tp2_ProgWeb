@@ -7,7 +7,7 @@
       <button @click="logIn" >Log in</button>
       <p v-show="errorMessage">Mauvais Loggin / Mot De Passe</p>
         </div>
-        <div v-show="this.$parent.userIsAuth">
+        <div v-show="this.$parent.userIsAuth || this.$parent.userIsConnected">
             <p>Bonjour : {{ logged_user }}</p>
         </div>
         
@@ -38,11 +38,17 @@
         },
         methods: {
             logIn() {
-                if (this.login == this.ADMIN_LOG.default && this.password == this.ADMIN_PASS.default) {
+                if (this.login == this.ADMIN_LOG.default && this.password == this.ADMIN_PASS.default || this.login == "user" && this.password == "pass") {
                     this.logged_user = this.login
                     this.logged_pass = this.password
                     this.errorMessage = false
-                    this.$emit('Login::userIsAuth', {loginResult: true})
+                    if(this.logged_user ==this.ADMIN_LOG.default){
+                        this.$emit('Login::userIsAuth', {loginResult: true})
+                     }
+                     else{
+                        this.$emit('LoginU::userIsConnected', {loginResult: true})
+
+                     }
                 }
                 else{
                     this.errorMessage = true 

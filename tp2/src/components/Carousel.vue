@@ -31,8 +31,20 @@ export default {
     },
     
     methods: {
+
+        cote(){
+            var score = null;
+            if(this.critics.length() > 0){
+                for(this.critic in this.critics){
+                    score += this.critic.score
+                }
+                score = score / this.critics.length();
+            }
+            return score;
+        },
+
         sliceThis(discription){
-            var tripDis = discription.slice(0,99);
+            var tripDis = discription.slice(0,100);
             return tripDis;
         },
         
