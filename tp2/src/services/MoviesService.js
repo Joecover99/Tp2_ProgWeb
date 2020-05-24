@@ -28,7 +28,7 @@ const LAST_PAGE = '?page=6';
 export default {
     getMovies(){
         // let sortParams = `?$orderby=ModifiedDate%20desc`;
-        return apiMovie.get('/' + RESSOURCE_NAME)
+        return apiMovie.get('/' + RESSOURCE_NAME + LAST_PAGE)
     },
     getMoviesLast(){
         // let sortParams = `?$orderby=ModifiedDate%20desc`;
