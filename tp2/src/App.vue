@@ -4,6 +4,7 @@
       <router-link to="/">Home | </router-link> 
       <router-link to="/modify" v-show="userIsAuth || userIsConnected" >modify | </router-link> 
       <router-link to="/createUser" :hidden="userIsAuth || userIsConnected">Register | </router-link> 
+      <router-link to="/filmsAdd" v-show="userIsAuth">Add Movie | </router-link> 
       <router-link to="/login" :hidden="userIsAuth || userIsConnected">Login | </router-link> 
       <button @click="userIsAuth = false" v-show="userIsAuth">Logout</button>
     <button id="logout" @click="userIsConnected = false" v-show="userIsConnected">Logout</button>
