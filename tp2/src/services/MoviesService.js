@@ -26,6 +26,15 @@ const Comment= 'comment'
 const LAST_PAGE = '?page=6';
 
 export default {
+    createMovie(film){
+        apiMovie.post('/' + film)
+    },
+    getRatings(){
+        return apiMovie.get('/' + 'ratings')
+    },
+    getLanguage(){
+        return apiMovie.get('/' + 'languages')
+    },
     getMovies(){
         // let sortParams = `?$orderby=ModifiedDate%20desc`;
         return apiMovie.get('/' + RESSOURCE_NAME)
@@ -58,14 +67,14 @@ export default {
     verifyUser(user){
         return apiMovie.get('/' + USERS + '/' + user + 'verify')
     },
-    createUser(){
-        return apiMovie.post('/' + USERS)
+    createUser(user){
+        apiMovie.post('/' + user)
     },
     modifyUser(user){
-        return apiMovie.put('/' + USERS + '/' + user)
+        apiMovie.put('/' + USERS + '/' + user)
     }, 
     modifyUserPassword(user, password){
-        return apiMovie.put('/' + USERS + '/' + user + '/' + password)
+        apiMovie.put('/' + USERS + '/' + user + '/' + password)
     }
 
 }

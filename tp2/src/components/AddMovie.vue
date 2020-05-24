@@ -16,28 +16,42 @@
         </div>
             <div class="error" v-if="!$v.mCover.required">Movie cover is required</div>
 
-        <!---  Synopsis  --->
+        <!---  Synopsis     --->
         <div class="form-group" :class="{ 'form-group--error': $v.snyopsis.$error }">
                 <label class="form__label">Synopsis</label>
-                <input class="form__input" v-model.trim="$v.snyopsis.$model"/>
+                <input class="form__input" textareav-model.trim="$v.snyopsis.$model"/>
         </div>
             <div class="error" v-if="!$v.snyopsis.required">Synopsis is required</div>
             <div class="error" v-if="!$v.snyopsis.maxLength">Synopsis is too long</div>
             <div class="error" v-if="!$v.snyopsis.minLength">Synopsis is too short</div>
+
         <!---  Rate         --->
         <div class="form-group" :class="{ 'form-group--error': $v.rated.$error }">
                 <label class="form__label">Rated</label>
                 <input class="form__input" v-model.trim="$v.rated.$model"/>
         </div>
 
+        <!---  Length       --->
+        <div class="form-group" :class="{ 'form-group--error': $v.length.$error }">
+                <label class="form__label">Length</label>
+                <input class="form__input" v-model.trim="$v.length.$model"/>
+        </div>
+            <div class="error" v-if="!$v.length.required">Length is required</div>
+
         <!---  Publish Date --->
         <div class="form-group" :class="{ 'form-group--error': $v.date.$error }">
                 <label class="form__label">Publish date</label>
-                <input class="form__input" type="datetime" v-model.trim="$v.date.$model"/>
+                <input class="form__input" type="datetime" max:2020 v-model.trim="$v.date.$model"/>
         </div>
             <div class="error" v-if="!$v.date.required">Publish date is required</div>
 
-        <!---  acteur       --->
+        <!---  Language     --->
+        <div class="form-group" :class="{ 'form-group--error': $v.language.$error }">
+                <label class="form__label">Language</label>
+                <input class="form__input" type="datetime" v-model.trim="$v.language.$model"/>
+        </div>
+            <div class="error" v-if="!$v.language.required">Language is required</div>
+     
         <!---  button       --->
         <button class="button" type="submit" :disabled="submitStatus === 'PENDING'">Submit!</button>
 
@@ -49,7 +63,8 @@
 </template>
 
 <script>
-import { required, minLength, maxLength, email, sameAs } from 'vuelidate/lib/validators'
+import MoviesService from '../services/MoviesService.js'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
@@ -62,7 +77,8 @@ export default {
         snyopsis: '',
         rated: '',
         date: '',
-        acteur: '',
+        length: '',
+        language: '',
         submitStatus: null
         }
     },
@@ -74,8 +90,6 @@ export default {
         },
         mCover: {
             required,
-            maxLength: maxLength(50),
-            minLength: minLength(3)
         },
         snyopsis: {
             required,
@@ -87,9 +101,12 @@ export default {
         date: {
             required,
         },
-        acteur: {
-            required,
-        }
+        length: {
+            required
+        },
+        language: {
+            required
+        },
     },
    methods: {
     submit() {
@@ -98,7 +115,8 @@ export default {
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
       } else {
-        // do your submit logic here
+        let film  = 
+        MoviesService.createMovie(film)
         this.submitStatus = 'PENDING'
         setTimeout(() => {
           this.submitStatus = 'OK'
