@@ -14,13 +14,19 @@
             </div>  
         <h3> Synopsis </h3>
             <p> {{movie.description}} </p>
+
+            <ManageMovie/>
     </div>
 </template>
 
 <script>
 import MoviesServices1 from '../services/MoviesService.js'
+import ManageMovie from '../components/ManageMovie.vue'
 
     export default {
+        components: {
+            ManageMovie,
+        },
          data() {
             return {
                 error: null,

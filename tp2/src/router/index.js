@@ -47,6 +47,11 @@ Vue.use(VueRouter)
     component: () => import('../views/movieDetailAdmin.vue'),
     props: castRouteParamsId
   },
+  {
+    path: '/filmsAdd',
+    name: 'Add',
+    component: () => import('../views/AddMovieView.vue'),
+  },
   
 ]
 
