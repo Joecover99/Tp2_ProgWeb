@@ -29,19 +29,22 @@ export default {
                 default: true
         }
     },
-    
-    methods: {
-
-        cote(){
-            var score = null;
-            if(this.critics.length() > 0){
-                for(this.critic in this.critics){
-                    score += this.critic.score
-                }
-                score = score / this.critics.length();
-            }
-            return score;
+    computed:{ 
+        countNumberOfCritics(){
+            return this.critics.length;                 
         },
+        overAllRating(){
+            if(this.critics.length < 5){
+                return "N/D";
+            }
+            else{
+                let overallScore = 0;
+                this.critics.forEach(c => overallScore += Number(c.score));
+                return (overallScore /= this.critics.length).toPrecision(3);
+            }
+        }
+        }, 
+    methods: {
 
         sliceThis(discription){
             var tripDis = discription.slice(0,100);

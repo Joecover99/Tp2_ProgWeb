@@ -46,7 +46,7 @@
         <!-- //Email ---------------------------- -->
         <div class="form-group" :class="{ 'form-group--error': $v.email.$error }">
             <label class="form__label">Courriel</label>
-            <input class="form__input" v-model.trim="$v.email.$model"/>
+            <input class="form__input" type="email" v-model.trim="$v.email.$model"/>
         </div>
         <div class="error" v-if="!$v.lName.required">Email is required</div>
         <div class="error" v-if="!$v.fName.maxLength">Email is too short</div>
