@@ -43,7 +43,7 @@ import MoviesServices from '../services/MoviesService.js';
             },
             created () {
                 this.loading = true;
-                MoviesServices.getMoviesLast()
+                MoviesServices.getMovies()
                 .then(reponse =>{ 
                     this.movies = reponse.data;
                 })

@@ -1,12 +1,12 @@
 <template v-slot= default>
    
       <agile v-if="isActive" :autoplay="true" :navButtons="false" :dots="false" :centerMode="true" :initialSlide='0'>
-        <div class="slide" v-for="movie in movies.data.slice(1)" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
+        <div class="slide" v-for="movie in movies.data.slice()" :key="movie.id"> <!-- need to be 3 newest movies (sort3NewestMovies dans un array newestMovies) -->
             <h2> {{ movie.title }}</h2>
             <img :src="movie.image" alt="Affiche du film">
-            <div class="movieRating" >
-                    <star-rating v-model="rating" read-only></star-rating>
-            </div>  
+            <div class="score" v-for="critic in movie.critics" :key="critic.id">
+                {{ critic.score }}
+            </div>
             <p> {{ sliceThis(movie.description) }} <strong v-if="movie.description.length > 100" > (...) </strong></p>
             <button @click="onSelect(movie)"><strong>details</strong></button>
         </div>
@@ -15,10 +15,9 @@
 
 <script>
 import { VueAgile } from 'vue-agile'
-import StarRating from 'vue-star-rating'
+import MoviesService from '../services/MoviesService';
 export default {    
     components: {
-        StarRating,
         agile: VueAgile,
         
     },
@@ -33,12 +32,13 @@ export default {
     methods: {
 
         cote(){
-            var score = null;
-            if(this.critics.length() > 0){
-                for(this.critic in this.critics){
-                    score += this.critic.score
+            let score = 0;
+            let critics = MoviesService.getComments(this);
+            if(critics.length > 0 ){
+                for(score in critics){
+                    score += critics.critic;
                 }
-                score = score / this.critics.length();
+                score = score / critics.length
             }
             return score;
         },
