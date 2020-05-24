@@ -5,8 +5,9 @@
             <h2> {{ movie.title }}</h2>
             <img :src="movie.image" alt="Affiche du film">
             <div class="movieRating" >
-                    <star-rating v-model="rating" read-only></star-rating>
+                <star-rating :rating="overallStarRating" :read-only="true" v-bind:increment="0.5"></star-rating>
             </div>  
+            <p><strong>overall Rating: </strong>{{overAllRating}}/ 100</p>
             <p> {{ sliceThis(movie.description) }} <strong v-if="movie.description.length > 100" > (...) </strong></p>
             <button @click="onSelect(movie)"><strong>details</strong></button>
         </div>
@@ -30,10 +31,7 @@ export default {
         }
     },
     computed:{ 
-        countNumberOfCritics(){
-            return this.critics.length;                 
-        },
-        overAllRating(){
+       /* overAllRating(){
             if(this.critics.length < 5){
                 return "N/D";
             }
@@ -42,7 +40,21 @@ export default {
                 this.critics.forEach(c => overallScore += Number(c.score));
                 return (overallScore /= this.critics.length).toPrecision(3);
             }
-        }
+        },
+        overallStarRating(){
+                if(this.critics.length < 5){
+                    return 0;
+                }
+                else{
+                    let overallScore = 0;
+                    let dividedScoreBy = 20;
+                    this.critics.forEach(c => overallScore += Number(c.score));
+                    overallScore = (overallScore /= this.critics.length).toPrecision(3);
+                    overallScore /=  dividedScoreBy;
+                    overallScore = Math.round(2*overallScore) / 2                  
+                    return overallScore;
+                }
+            },*/
         }, 
     methods: {
 
