@@ -1,8 +1,6 @@
 <template>
     <div class="NavBarResume">
-        <div :hidden='isHidden()'>
-                <p>Aucun Resultat trouver</p>
-        </div>
+      
         <div v-for=" movie in searchMovies" :key="movie.id">
                 <h2 @click="onSelect(movie)">{{ movie.title }}</h2>
                 <img :src="movie.image" @click="onSelect(movie)"  alt="Affiche du film">
@@ -13,7 +11,7 @@
                 <p>Durée: {{movie.length }} Mins</p>
                 <button @click="onSelect(movie)">See more Details</button>
         </div>
-        <p :hidden="isNoResult">Aucun Resultat</p>
+        <p :hidden="isNoResult">Aucun Resultat Trouvé</p>
     </div>
 </template>
 
@@ -40,21 +38,22 @@
             },
             computed: {
                     searchMovies(){
-
-                        let filtered = this.items.data;
-                        if (this.keyword) {
-                        filtered = this.items.data.filter(
+                       
+                        let filtered = this.items;
+                        if (this.keyword != "") {
+                        filtered = this.items.filter(
                             m => m.title.toLowerCase().indexOf(this.keyword) > -1
                         );
                         }
                         return filtered;
+                        
                     },
 
                     isNoResult(){
                         if(this.keyword != "" && this.searchMovies.length == 0){
-                            return false
+                            return true
                         }
-                        return true
+                        return false
                     }
                 },
             methods: {
