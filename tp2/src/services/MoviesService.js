@@ -22,12 +22,12 @@ apiMovie.interceptors.response.use(
 const USERS = 'users';
 const RESSOURCE_NAME = 'films';
 const ACTOR_CASE = 'actors';
-const Comment= 'comment'
+const COMMENT= 'critic'
 const LAST_PAGE = '?page=6';
 
 export default {
-    createMovie(film){
-        apiMovie.post('/' + film)
+    createMovie(title, releaseYear, length, image, description, rating, languageId){
+        apiMovie.post('RESSOURCE_NAME', { title: title, release_year: releaseYear, length: length, image: image, description: description, rating: rating, language_id: languageId }) 
     },
     getRatings(){
         return apiMovie.get('/' + 'ratings')
@@ -37,11 +37,11 @@ export default {
     },
     getMovies(){
         // let sortParams = `?$orderby=ModifiedDate%20desc`;
-        return apiMovie.get('/' + RESSOURCE_NAME + LAST_PAGE)
+        return apiMovie.get(RESSOURCE_NAME)
     },
     getMoviesLast(){
         // let sortParams = `?$orderby=ModifiedDate%20desc`;
-        return apiMovie.get('/' + RESSOURCE_NAME + LAST_PAGE)
+        return apiMovie.get(RESSOURCE_NAME + LAST_PAGE)
     },
     getMovie(id) {
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id)
@@ -50,16 +50,16 @@ export default {
         return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + ACTOR_CASE)
     },
     getComments(id){
-        return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + Comment) 
+        return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + COMMENT) 
     },
     deleteMovie(id){
         return apiMovie.delete('/' + RESSOURCE_NAME + '/' + id)
     },
-    createCritic(id){
-        return apiMovie.get('/' + RESSOURCE_NAME + '/' + id + '/' + Comment)   
+    createCritic(id, userId, fName, lName, score, comment){
+        return apiMovie.post('/' + RESSOURCE_NAME + '/' + id + '/' + COMMENT, {user_id: userId, critic_first_name: fName, critic_last_name: lName, score: score, comment: comment})   
     },
-    modifieCritic(id, crit){
-        return apiMovie.put('/' + RESSOURCE_NAME + '/' + id + '/' + Comment + '/' + crit)
+    modifieCritic(id, critID, score, comment){
+        return apiMovie.put('/' + RESSOURCE_NAME + '/' + id + '/' + COMMENT + '/' + critID, {score: score, comment: comment})
     },
     getUser(user) {
         return apiMovie.get('/' + USERS + '/' + user)
@@ -67,14 +67,14 @@ export default {
     verifyUser(user){
         return apiMovie.get('/' + USERS + '/' + user + 'verify')
     },
-    createUser(user){
-        apiMovie.post('/' + user)
+    createUser(fName, lName, username, password, email){
+        apiMovie.post(USERS, {first_name: fName, last_lame: lName, username: username, password: password, email: email})
     },
-    modifyUser(user){
-        apiMovie.put('/' + USERS + '/' + user)
+    modifyUser(id, fName, lName, username, email){
+        apiMovie.put(USERS, id, {first_name: fName, last_lame: lName, username: username, email: email})
     }, 
-    modifyUserPassword(user, password){
-        apiMovie.put('/' + USERS + '/' + user + '/' + password)
+    modifyUserPassword(id, fName, lName, username, email, password){
+        apiMovie.put(USERS, id, {firstName: fName, lastName: lName, username: username, email: email}, password)
     }
 
 }

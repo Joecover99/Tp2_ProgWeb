@@ -17,19 +17,21 @@
             <div class="error" v-if="!$v.mCover.required">Movie cover is required</div>
 
         <!---  Synopsis     --->
-        <div class="form-group" :class="{ 'form-group--error': $v.snyopsis.$error }">
+        <div class="form-group" :class="{ 'form-group--error': $v.synopsis.$error }">
                 <label class="form__label">Synopsis</label>
                 <input class="form__input" textareav-model.trim="$v.snyopsis.$model"/>
         </div>
-            <div class="error" v-if="!$v.snyopsis.required">Synopsis is required</div>
-            <div class="error" v-if="!$v.snyopsis.maxLength">Synopsis is too long</div>
-            <div class="error" v-if="!$v.snyopsis.minLength">Synopsis is too short</div>
+            <div class="error" v-if="!$v.synopsis.required">Synopsis is required</div>
+            <div class="error" v-if="!$v.synopsis.maxLength">Synopsis is too long</div>
+            <div class="error" v-if="!$v.synopsis.minLength">Synopsis is too short</div>
 
         <!---  Rate         --->
-        <div class="form-group" :class="{ 'form-group--error': $v.rated.$error }">
+        <!---<div class="form-group" :class="{ 'form-group--error': $v.rated.$error }">
                 <label class="form__label">Rated</label>
-                <input class="form__input" v-model.trim="$v.rated.$model"/>
-        </div>
+                <select v-model="$v.rated.$model" v-for="rating in this.ratings" :key="rating.id">
+                    <option :value="rating.name">{{rating.name}}</option>
+                </select>
+        </div>--->
 
         <!---  Length       --->
         <div class="form-group" :class="{ 'form-group--error': $v.length.$error }">
@@ -45,19 +47,18 @@
         </div>
             <div class="error" v-if="!$v.date.required">Publish date is required</div>
 
-        <!---  Language     --->
+        <!---  Language    
         <div class="form-group" :class="{ 'form-group--error': $v.language.$error }">
                 <label class="form__label">Language</label>
-                <input class="form__input" type="datetime" v-model.trim="$v.language.$model"/>
+                <select  v-for="language in this.languages" :key="language.id">
+                    <option :value="language.id">{{language.name}}</option>
+                </select>
         </div>
-            <div class="error" v-if="!$v.language.required">Language is required</div>
-     
+            <div class="error" v-if="!$v.languages.required">Language is required</div>
+        --->
         <!---  button       --->
         <button class="button" type="submit" :disabled="submitStatus === 'PENDING'">Submit!</button>
 
-        <p class="typo__p" v-if="submitStatus === 'OK'">Registration successful</p>
-        <p class="typo__p" v-if="submitStatus === 'ERROR'">Make sure everything is filled</p>
-        <p class="typo__p" v-if="submitStatus === 'PENDING'">Pending for confirmation...</p>
 
     </form>
 </template>
@@ -68,18 +69,28 @@ import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
-
+/*
+const title = null
+const mCover = null
+const synopsis = null
+const rated = null
+const date = null
+const length = null
+const language = null
+//const ratings = null
+//const languages = null*/
 export default {
     data() {
         return {
-        title: '',
-        mCover: '',
-        snyopsis: '',
-        rated: '',
-        date: '',
-        length: '',
-        language: '',
-        submitStatus: null
+            title: null,
+            mCover: null,
+            synopsis: null,
+            rated: null,
+            date: null,
+            length: null,
+            language: null,
+            ratings: [],
+            languages: []
         }
     },
     validations: {
@@ -91,7 +102,7 @@ export default {
         mCover: {
             required,
         },
-        snyopsis: {
+        synopsis: {
             required,
             minLength: minLength(3),
         },
@@ -108,6 +119,12 @@ export default {
             required
         },
     },
+    created:{
+        onLoad(){
+            this.ratings = MoviesService.getRatings()
+            this.languages = MoviesService.getLanguage()
+        },
+    },
    methods: {
     submit() {
       console.log('submit!')
@@ -115,8 +132,7 @@ export default {
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
       } else {
-        let film  = 
-        MoviesService.createMovie(film)
+        MoviesService.createMovie(this.title, this.date, this.length, this.mCover, this.synopsis, this.rated, this.language)
         this.submitStatus = 'PENDING'
         setTimeout(() => {
           this.submitStatus = 'OK'

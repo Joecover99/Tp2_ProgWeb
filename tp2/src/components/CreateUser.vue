@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import MoviesService from '../services/MoviesService.js'
 import { required, minLength, maxLength, email, sameAs } from 'vuelidate/lib/validators'
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
@@ -71,7 +72,8 @@ Vue.use(Vuelidate)
 export default {
     data() {
         return {
-        name: '',
+        fName: '',
+        lName: '',
         username: '',
         password: '',
         passwordConfimation: '',
@@ -114,16 +116,14 @@ export default {
     },
     methods: {
     submit() {
-      console.log('submit!')
       this.$v.$touch()
       if (this.$v.$invalid) {
-        this.submitStatus = 'ERROR'
+        console.log('ERROR')
       } else {
-        // do your submit logic here
-        this.submitStatus = 'PENDING'
-        setTimeout(() => {
-          this.submitStatus = 'OK'
-        }, 500)
+        MoviesService.createUser(this.fName, this.lName, this.username, this.password, this.email)
+        this.$router.push({ name: "Home"});
+        console.log('submit!')
+
       }
     }
   }
