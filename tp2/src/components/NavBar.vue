@@ -9,7 +9,6 @@
             <nav-bar-resume :items='movies' v-bind:keyword="Reshearch"/>
             <hr>
         </div>
-        
     </div>
 </template>
 

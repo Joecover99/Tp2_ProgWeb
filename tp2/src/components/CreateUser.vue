@@ -1,10 +1,9 @@
 <template>
-  
     <form @submit.prevent="submit">
         <!-- //Nom ---------------------------- -->
         <div class="form-group" :class="{ 'form-group--error': $v.fName.$error }">
             <label class="form__label">Prenom</label>
-            <input class="form__input" v-model.trim="$v.fName.$model"/>
+            <input class="form__input" v-model.trim.lazy="$v.fName.$model"/>
         </div>
         <div class="error" v-if="!$v.fName.required">First name is required</div>
         <div class="error" v-if="!$v.fName.maxLength">First name is too long</div>
@@ -12,7 +11,7 @@
 
         <div class="form-group" :class="{ 'form-group--error': $v.lName.$error }">
             <label class="form__label">Nom de famille</label>
-            <input class="form__input" v-model.trim="$v.lName.$model"/>
+            <input class="form__input" v-model.trim.lazy="$v.lName.$model"/>
         </div>
         <div class="error" v-if="!$v.lName.required">Last name is required</div>
         <div class="error" v-if="!$v.fName.maxLength">Last name is too long</div>
@@ -22,7 +21,7 @@
         <!-- //Username ------------------------ -->
         <div class="form-group" :class="{ 'form-group--error': $v.username.$error }">
             <label class="form__label">Nom d'utilisateur</label>
-            <input class="form__input" v-model.trim="$v.username.$model"/>
+            <input class="form__input" v-model.trim.lazy="$v.username.$model"/>
         </div>
         <div class="error" v-if="!$v.lName.required">UserName is required</div>
         <div class="error" v-if="!$v.fName.maxLength">UserName is too long</div>
@@ -31,7 +30,7 @@
         <!-- //Password ----------------------- -->
         <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
             <label class="form__label">Mot de passe</label>
-            <input class="form__input" type="password" v-model.trim="$v.password.$model"/>
+            <input class="form__input" type="password" v-model.trim.lazy="$v.password.$model"/>
         </div>
         <div class="error" v-if="!$v.lName.required">Password is required</div>
         <div class="error" v-if="!$v.fName.maxLength">Password is too long</div>
@@ -39,14 +38,14 @@
 
         <div class="form-group" :class="{ 'form-group--error': $v.passwordConfimation.$error }">
             <label class="form__label">Confirmation</label>
-            <input class="form__input" type="password" v-model.trim="$v.passwordConfimation.$model"/>
+            <input class="form__input" type="password" v-model.trim.lazy="$v.passwordConfimation.$model"/>
         </div>
         <div class="error" v-if="!$v.lName.sameAsPassword">The password is not the same</div>
 
         <!-- //Email ---------------------------- -->
         <div class="form-group" :class="{ 'form-group--error': $v.email.$error }">
             <label class="form__label">Courriel</label>
-            <input class="form__input" type="email" v-model.trim="$v.email.$model"/>
+            <input class="form__input" type="email" v-model.trim.lazy="$v.email.$model"/>
         </div>
         <div class="error" v-if="!$v.lName.required">Email is required</div>
         <div class="error" v-if="!$v.fName.maxLength">Email is too short</div>
@@ -59,7 +58,6 @@
         <p class="typo__p" v-if="submitStatus === 'ERROR'">Make sure everything is filled</p>
         <p class="typo__p" v-if="submitStatus === 'PENDING'">Pending for confirmation...</p>
     </form>
-
 </template>
 
 <script>
@@ -81,6 +79,7 @@ export default {
         submitStatus: null
         }
     },
+    
     validations: {
         fName: {
             required,
@@ -128,7 +127,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style>

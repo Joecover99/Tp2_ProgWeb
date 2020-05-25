@@ -9,8 +9,7 @@ import AddMovie from '../components/AddMovie.vue'
     export default {
         components: {
             AddMovie,
-        },
-        
+        },      
     }
 </script>
 

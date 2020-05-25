@@ -36,11 +36,9 @@ export default {
         return apiMovie.get('/' + 'languages')
     },
     getMovies(){
-        // let sortParams = `?$orderby=ModifiedDate%20desc`;
         return apiMovie.get(RESSOURCE_NAME)
     },
     getMoviesLast(){
-        // let sortParams = `?$orderby=ModifiedDate%20desc`;
         return apiMovie.get(RESSOURCE_NAME + LAST_PAGE)
     },
     getMovie(id) {
@@ -76,5 +74,4 @@ export default {
     modifyUserPassword(id, fName, lName, username, email, password){
         apiMovie.put(USERS, id, {firstName: fName, lastName: lName, username: username, email: email}, password)
     }
-
 }

@@ -17,14 +17,6 @@
             <div class="error" v-if="!$v.synopsis.required">Synopsis is required</div>
             <div class="error" v-if="!$v.synopsis.minLength">Synopsis is too short</div>
 
-        <!---  Rate         --->
-        <!---<div class="form-group" :class="{ 'form-group--error': $v.rated.$error }">
-                <label class="form__label">Rated</label>
-                <select v-model="$v.rated.$model" v-for="rating in this.ratings" :key="rating.id">
-                    <option :value="rating.name">{{rating.name}}</option>
-                </select>
-        </div>--->
-
         <!---  Length       --->
         <div class="form-group" :class="{ 'form-group--error': $v.length.$error }">
                 <label class="form__label">Length</label>
@@ -39,15 +31,6 @@
         </div>
             <div class="error" v-if="!$v.date.required">Publish date is required</div>
 
-        <!---  Language    
-        <div class="form-group" :class="{ 'form-group--error': $v.language.$error }">
-                <label class="form__label">Language</label>
-                <select  v-for="language in this.languages" :key="language.id">
-                    <option :value="language.id">{{language.name}}</option>
-                </select>
-        </div>
-            <div class="error" v-if="!$v.languages.required">Language is required</div>
-        --->
         <!---  button       --->
         <button class="button" type="submit" >Submit!</button>
 
@@ -63,16 +46,7 @@ import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
-/*
-const title = null
-const mCover = null
-const synopsis = null
-const rated = null
-const date = null
-const length = null
-const language = null
-//const ratings = null
-//const languages = null*/
+
 export default {
     data() {
         return {
@@ -131,7 +105,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

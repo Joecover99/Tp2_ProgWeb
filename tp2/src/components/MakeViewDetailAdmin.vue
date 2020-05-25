@@ -14,7 +14,6 @@
             </div>  
         <h3> Synopsis </h3>
             <p> {{movie.description}} </p>
-
             <ManageMovie/>
     </div>
 </template>

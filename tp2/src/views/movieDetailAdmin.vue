@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// import MoviesServices1 from '../services/MoviesService.js'
 import Footer from '../components/Footer.vue'
 import MakeViewDetailAdmin from '../components/MakeViewDetailAdmin.vue'
 

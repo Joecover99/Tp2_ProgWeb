@@ -1,15 +1,15 @@
 <template>
-    <div>
-        <CreateUser/>
+    <div class="profile">
+        <UserProfile/>
     </div>
 </template>
 
 <script>
-import CreateUser from '../components/CreateUser.vue'
+import UserProfile from '../components/UserProfile.vue'
 
     export default {
         components: {
-            CreateUser,
+            UserProfile,
         },
     }
 </script>

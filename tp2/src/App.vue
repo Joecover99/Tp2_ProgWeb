@@ -6,6 +6,7 @@
       <router-link to="/createUser" :hidden="userIsAuth || userIsConnected">Register | </router-link> 
       <router-link to="/filmsAdd" v-show="userIsAuth">Add Movie | </router-link> 
       <router-link to="/login" :hidden="userIsAuth || userIsConnected">Login | </router-link> 
+      <router-link to="/profile" v-show="userIsConnected"> Profile |</router-link>
       <button @click="userIsAuth = false" v-show="userIsAuth">Logout</button>
     <button id="logout" @click="userIsConnected = false" v-show="userIsConnected">Logout</button>
       
@@ -24,25 +25,24 @@
         }
       },
 
-       methods: {
-          changeLoginResult({loginResult}) {
-            this.userIsAuth = loginResult
-          },
+      methods: {
+        changeLoginResult({loginResult}) {
+          this.userIsAuth = loginResult
+        },
 
-          changeLoginUResult({loginResult}) {
-            this.userIsConnected = loginResult
-          }
-       },
+        changeLoginUResult({loginResult}) {
+          this.userIsConnected = loginResult
+        }
+      },
 
-       computed: {
-          isLogged() {
-            return this.userIsAuth
-          },
-          isRegister() {
-            return this.userIsConnected
-          },
-
-        }, 
+      computed: {
+        isLogged() {
+          return this.userIsAuth
+        },
+        isRegister() {
+          return this.userIsConnected
+        },
+      }, 
     }
 </script>
 

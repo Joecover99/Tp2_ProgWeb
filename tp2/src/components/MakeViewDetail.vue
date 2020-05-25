@@ -18,7 +18,7 @@
                 <p><strong>First Name : </strong>{{actor.first_name}}</p>
                 <p><strong>Birth Date : </strong> {{actor.birthdate}}</p>
             </div>    
-           <Comment v-bind:critics="critics" v-show="this.$parent.$parent.userIsConnected"/>          
+        <Comment v-bind:critics="critics" v-show="this.$parent.$parent.userIsConnected"/>          
     </div>
 </template>
 
@@ -28,12 +28,12 @@ import MoviesServices2 from '../services/MoviesService.js'
 import StarRating from 'vue-star-rating'
 import Comment from '../components/Comments.vue'
 
-
     export default {
         components:{
             StarRating,
             Comment
         },
+
          data() {
             return {
                 error: null,
@@ -78,28 +78,27 @@ import Comment from '../components/Comments.vue'
         },
 
         created () {
-                MoviesServices1.getMovie(this.$route.params.id)
-                .then(reponse =>{ 
-                    this.movie = reponse.data.film;
-                })
-                .catch(error => {
-                    this.error = error;
-                })
-                MoviesServices1.getMovieActors(this.$route.params.id)
-                .then(reponse =>{
-                    this.actors = reponse.data;
-                });
-                MoviesServices2.getMovie(this.$route.params.id)
-                .then(reponse =>{
-                    this.critics = reponse.data.critic;
-                    console.log(reponse.data.critic);
-                });
-               MoviesServices2.getComments(this.$route.params.id)
-                .then(reponse =>{
-                    this.comments = reponse.data.bpi;
-                    console.log(reponse.data.bpi);
-                });
-
+            MoviesServices1.getMovie(this.$route.params.id)
+            .then(reponse =>{ 
+                this.movie = reponse.data.film;
+            })
+            .catch(error => {
+                this.error = error;
+            })
+            MoviesServices1.getMovieActors(this.$route.params.id)
+            .then(reponse =>{
+                this.actors = reponse.data;
+            });
+            MoviesServices2.getMovie(this.$route.params.id)
+            .then(reponse =>{
+                this.critics = reponse.data.critic;
+                console.log(reponse.data.critic);
+            });
+            MoviesServices2.getComments(this.$route.params.id)
+            .then(reponse =>{
+                this.comments = reponse.data.bpi;
+                console.log(reponse.data.bpi);
+            });
         }
     }
 </script>

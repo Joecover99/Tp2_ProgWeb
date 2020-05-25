@@ -21,41 +21,41 @@ import MoviesServices from '../services/MoviesService.js';
             },
         },
         
-            data() {
-                return {
-                    movies: [],
-                    error: null,
-                    loading: false,
-                    isActive: {
-                        type: Boolean,
-                        value: false
-                    },
+        data() {
+            return {
+                movies: [],
+                error: null,
+                loading: false,
+                isActive: {
+                    type: Boolean,
+                    value: false
+                },
 
-                }
-            },
-            computed: {
-                onLoad() {
-                    if(this.loading == false){
-                        return this.isActive
-                    }
-                    return false
-                }
-            },
-            created () {
-                this.loading = true;
-                MoviesServices.getMoviesLast()
-                .then(reponse =>{ 
-                    this.movies = reponse.data;
-                })
-                
-                .catch(error => {
-                    this.error = error;
-                })
-                .finally(() => this.loading = false);
-
-            },
-        methods: {
+            }
         },
+
+        computed: {
+            onLoad() {
+                if(this.loading == false){
+                    return this.isActive
+                }
+                return false
+            }
+        },
+
+        created () {
+            this.loading = true;
+            MoviesServices.getMoviesLast()
+            .then(reponse =>{ 
+                this.movies = reponse.data;
+            })
+            
+            .catch(error => {
+                this.error = error;
+            })
+            .finally(() => this.loading = false);
+
+        }
     }
 </script>
 
