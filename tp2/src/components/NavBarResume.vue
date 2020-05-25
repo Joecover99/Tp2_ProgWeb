@@ -4,11 +4,12 @@
         <div v-for=" movie in searchMovies" :key="movie.id">
                 <h2 @click="onSelect(movie)">{{ movie.title }}</h2>
                 <img :src="movie.image" @click="onSelect(movie)"  alt="Affiche du film">
-                <p>cote(pas fait)</p>
-                <p>Synopsis: {{ movie.description.slice(0,100) }}</p>
+                <div class="movieRating" >
+                    <star-rating :rating="overallStarRating" :read-only="true" v-bind:increment="0.5"></star-rating>
+                </div>
+                <p>Synopsis: {{ movie.description.slice(0,100) }} <strong v-if="movie.description.length > 100"> (...) </strong></p>
                 <p>Rating: {{movie.rating }}</p>
-                <p> manque logique pour Affiche les 100 prem carac avec <strong v-if="movie.description.length > 100"> (...) </strong></p>
-                <p>Durée: {{movie.length }} Mins</p>
+                <p>Durée: {{movie.length }} minutes</p>
                 <button @click="onSelect(movie)">See more Details</button>
         </div>
         <p :hidden="isNoResult">Aucun Resultat Trouvé</p>
@@ -16,7 +17,12 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
+
     export default {
+        components:{
+            StarRating,
+        },
         data() {
             return {
                 ischange: {
@@ -70,5 +76,9 @@
 </script>
 
 <style lang="scss" scoped>
-   
+   .movieRating{
+    margin-left: 44%;
+    margin-right: 56%; 
+    margin-top: 1%;
+}
 </style>
