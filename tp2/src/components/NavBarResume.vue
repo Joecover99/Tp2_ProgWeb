@@ -3,7 +3,7 @@
       
         <div v-for=" movie in searchMovies" :key="movie.id">
                 <h2 @click="onSelect(movie)">{{ movie.title }}</h2>
-                <img :src="movie.image" @click="onSelect(movie)"  alt="Affiche du film">
+                <img  src=../assets/logo.png @click="onSelect(movie)"  alt="Affiche du film">
                 <div class="movieRating" >
                     <star-rating :rating="overallStarRating" :read-only="true" v-bind:increment="0.5"></star-rating>
                 </div>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>{{ movie.title }}</h1>
-            <img :src= movie.image alt="Affiche du film">
+            <img  src=../assets/logo.png alt="Affiche du film">
             <div class="movieRating" >
                 <star-rating :rating="overallStarRating"  :read-only="true" v-bind:increment="0.5"></star-rating>
             </div>
