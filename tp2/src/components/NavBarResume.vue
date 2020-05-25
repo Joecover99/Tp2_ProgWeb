@@ -7,8 +7,8 @@
                 <star-rating :rating="overallStarRating" :read-only="true" v-bind:increment="0.5"></star-rating>
             </div>
             <p>Synopsis: {{ movie.description.slice(0,100) }} <strong v-if="movie.description.length > 100"> (...) </strong></p>
-            <p>Rating: {{movie.rating }}</p>
-            <p>Durée: {{movie.length }} minutes</p>
+            <p>Rating: {{movie.rating}}</p>
+            <p>Durée: {{movie.length}} minutes</p>
             <button @click="onSelect(movie)">See more Details</button>
         </div>
         <p :hidden="isNoResult">Aucun Resultat Trouvé</p>
