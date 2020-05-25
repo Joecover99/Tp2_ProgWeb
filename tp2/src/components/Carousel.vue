@@ -5,7 +5,7 @@
             <h2> {{ movie.title }}</h2>
             <img :src="movie.image" alt="Affiche du film">
             <div class="movieRating" >
-                    <star-rating v-model="rating" read-only></star-rating>
+                <star-rating :rating="overallStarRating" :read-only="true" v-bind:increment="0.5"></star-rating>
             </div>  
             <p> {{ sliceThis(movie.description) }} <strong v-if="movie.description.length > 100" > (...) </strong></p>
             <button @click="onSelect(movie)"><strong>details</strong></button>
@@ -16,11 +16,11 @@
 <script>
 import { VueAgile } from 'vue-agile'
 import StarRating from 'vue-star-rating'
+
 export default {    
     components: {
         StarRating,
         agile: VueAgile,
-        
     },
     props: {
         movies: null,
@@ -29,21 +29,6 @@ export default {
                 default: true
         }
     },
-    computed:{ 
-        countNumberOfCritics(){
-            return this.critics.length;                 
-        },
-        overAllRating(){
-            if(this.critics.length < 5){
-                return "N/D";
-            }
-            else{
-                let overallScore = 0;
-                this.critics.forEach(c => overallScore += Number(c.score));
-                return (overallScore /= this.critics.length).toPrecision(3);
-            }
-        }
-        }, 
     methods: {
 
         sliceThis(discription){
@@ -60,7 +45,6 @@ export default {
                  this.$router.push({ name: "movie", params: { id: movie.id} });
             }               
         },
-
     },
 }
 </script>
