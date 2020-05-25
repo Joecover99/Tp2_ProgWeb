@@ -9,20 +9,12 @@
             <div class="error" v-if="!$v.title.maxLength">Title is too long</div>
             <div class="error" v-if="!$v.title.minLength">Title is too short</div>
 
-        <!---  Movie Cover  --->
-        <div class="form-group" :class="{ 'form-group--error': $v.mCover.$error }">
-                <label class="form__label">Movie cover</label>
-                <input class="form__input" v-model.trim="$v.mCover.$model"/>
-        </div>
-            <div class="error" v-if="!$v.mCover.required">Movie cover is required</div>
-
         <!---  Synopsis     --->
         <div class="form-group" :class="{ 'form-group--error': $v.synopsis.$error }">
                 <label class="form__label">Synopsis</label>
-                <input class="form__input" textareav-model.trim="$v.snyopsis.$model"/>
+                <input class="form__input" v-model.trim="$v.synopsis.$model"/>
         </div>
             <div class="error" v-if="!$v.synopsis.required">Synopsis is required</div>
-            <div class="error" v-if="!$v.synopsis.maxLength">Synopsis is too long</div>
             <div class="error" v-if="!$v.synopsis.minLength">Synopsis is too short</div>
 
         <!---  Rate         --->
@@ -57,13 +49,15 @@
             <div class="error" v-if="!$v.languages.required">Language is required</div>
         --->
         <!---  button       --->
-        <button class="button" type="submit" :disabled="submitStatus === 'PENDING'">Submit!</button>
+        <button class="button" type="submit" >Submit!</button>
 
 
     </form>
 </template>
 
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script>
+
 import MoviesService from '../services/MoviesService.js'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import Vue from 'vue'
@@ -83,14 +77,14 @@ export default {
     data() {
         return {
             title: null,
-            mCover: null,
+            
             synopsis: null,
             rated: null,
             date: null,
             length: null,
             language: null,
-            ratings: [],
-            languages: []
+            ratings: null,
+            languages: null
         }
     },
     validations: {
@@ -98,9 +92,6 @@ export default {
             required,
             maxLength: maxLength(50),
             minLength: minLength(3)
-        },
-        mCover: {
-            required,
         },
         synopsis: {
             required,
@@ -127,16 +118,14 @@ export default {
     },
    methods: {
     submit() {
-      console.log('submit!')
+     
       this.$v.$touch()
       if (this.$v.$invalid) {
-        this.submitStatus = 'ERROR'
+           console.log('ca marche pas')
+         
       } else {
-        MoviesService.createMovie(this.title, this.date, this.length, this.mCover, this.synopsis, this.rated, this.language)
-        this.submitStatus = 'PENDING'
-        setTimeout(() => {
-          this.submitStatus = 'OK'
-        }, 500)
+        MoviesService.createMovie(this.title, this.date, this.length, this.synopsis, this.rated, this.language)
+    
       }
     }
   }

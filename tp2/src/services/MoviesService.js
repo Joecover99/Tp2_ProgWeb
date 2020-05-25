@@ -26,8 +26,8 @@ const COMMENT= 'critic'
 const LAST_PAGE = '?page=6';
 
 export default {
-    createMovie(title, releaseYear, length, image, description, rating, languageId){
-        apiMovie.post('RESSOURCE_NAME', { title: title, release_year: releaseYear, length: length, image: image, description: description, rating: rating, language_id: languageId }) 
+    createMovie(title, releaseYear, length, description, rating, languageId){
+        apiMovie.post(RESSOURCE_NAME ,{ title: title, release_year: releaseYear, length: length, description: description, rating: rating, language_id: languageId }) 
     },
     getRatings(){
         return apiMovie.get('/' + 'ratings')
