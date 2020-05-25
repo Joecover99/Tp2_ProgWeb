@@ -25,25 +25,24 @@
         }
       },
 
-       methods: {
-          changeLoginResult({loginResult}) {
-            this.userIsAuth = loginResult
-          },
+      methods: {
+        changeLoginResult({loginResult}) {
+          this.userIsAuth = loginResult
+        },
 
-          changeLoginUResult({loginResult}) {
-            this.userIsConnected = loginResult
-          }
-       },
+        changeLoginUResult({loginResult}) {
+          this.userIsConnected = loginResult
+        }
+      },
 
-       computed: {
-          isLogged() {
-            return this.userIsAuth
-          },
-          isRegister() {
-            return this.userIsConnected
-          },
-
-        }, 
+      computed: {
+        isLogged() {
+          return this.userIsAuth
+        },
+        isRegister() {
+          return this.userIsConnected
+        },
+      }, 
     }
 </script>
 

@@ -11,7 +11,6 @@ import UserProfile from '../components/UserProfile.vue'
         components: {
             UserProfile,
         },
-        
     }
 </script>
 

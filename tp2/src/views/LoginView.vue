@@ -3,14 +3,13 @@
         <div :hidden="this.$parent.userIsAuth || this.$parent.userIsConnected">
             Login <input type="text" name="username" placeholder="Username" value="Utilisateur" v-model="login" maxlength="50" @keyup.enter="logIn">
             Password <input type="password" name="password" placeholder="Password" value="Mot De Passe" v-model="password" maxlength="50" @keyup.enter="logIn">
-        <br>
-      <button @click="logIn" >Log in</button>
-      <p v-show="errorMessage">Wrong Loggin / Password</p>
+            <br>
+            <button @click="logIn" >Log in</button>
+            <p v-show="errorMessage">Wrong Loggin / Password</p>
         </div>
         <div v-show="this.$parent.userIsAuth || this.$parent.userIsConnected">
             <p>Welcome : {{ logged_user }}</p>
-        </div>
-        
+        </div> 
     </div>
 </template>
 
@@ -35,6 +34,7 @@
                 errorMessage: false,
             }
         },
+
         methods: {
             logIn() {
                 if (this.login == this.ADMIN_LOG.default && this.password == this.ADMIN_PASS.default || this.login == "user" && this.password == "pass") {
@@ -46,7 +46,6 @@
                      }
                      else{
                         this.$emit('LoginU::userIsConnected', {loginResult: true})
-
                      }
                 }
                 else{

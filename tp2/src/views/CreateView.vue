@@ -11,7 +11,6 @@ import CreateUser from '../components/CreateUser.vue'
         components: {
             CreateUser,
         },
-        
     }
 </script>
 

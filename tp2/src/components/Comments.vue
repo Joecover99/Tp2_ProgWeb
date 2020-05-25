@@ -23,7 +23,6 @@
 </template>
 
 <script>
-
  import StarRating from 'vue-star-rating'
  import _ from 'lodash'
 
@@ -36,7 +35,6 @@
             return{
                 critic_first_name: null,
                 critic_last_name: null,
-               //  mockReviews: MOCK_REVIEWS,
             }
          },
 
@@ -44,11 +42,6 @@
             orderedComments: function () {
                 return _.orderBy(this.critics, 'creation_date', ['desc'])
             },
-            /*reviews () {
-                return this.mockReviews.filter(review => {
-                    return movie.movie_id === this.movie
-                })
-            }*/
         },
 
          props: {
@@ -61,42 +54,6 @@
                 default: null
              }
          },
-        
-        methods:{
-           /* addReview () {
-                if (!this.movie || !this.review.reviewer || !this.review.content) {
-                    return
-                }
-                let review = {
-                    movie_id: this.movie, 
-                    content: this.review.content, 
-                    reviewer: this.review.reviewer, 
-                    time: new Date().toLocaleDateString()
-                }
-                this.mockReviews.unshift(review)
-                }*/
-           /* addComment(){
-                if(this.critics.id && this.critics.comment){
-                    this.critics.push({author: this.critics.critic_first_name + this.crtitics.critic_last_name, content: this.critics.comment})
-                }else{
-                    alert('Fields Empty');
-                }
-            },
-            editComment(){
-                if(this.critic.id && this.critics.comment){
-
-                }
-            }*/
-            },
-            /*    
-                removeComment: function (index){
-                    this.comments.remove(index);
-                }
-                },
-        
-                filters: {
-                marked: marked
-            },*/
     }
 </script>
 

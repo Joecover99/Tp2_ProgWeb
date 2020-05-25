@@ -1,5 +1,4 @@
 <template>
-  
     <form @submit.prevent="submit">
         <!-- //Nom ---------------------------- -->
         <div class="form-group" :class="{ 'form-group--error': $v.fName.$error }">
@@ -59,7 +58,6 @@
         <p class="typo__p" v-if="submitStatus === 'ERROR'">Make sure everything is filled</p>
         <p class="typo__p" v-if="submitStatus === 'PENDING'">Pending for confirmation...</p>
     </form>
-
 </template>
 
 <script>
@@ -129,7 +127,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style>
