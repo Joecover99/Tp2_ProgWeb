@@ -37,7 +37,7 @@ import NavBarResume from '../components/NavBarResume.vue';
                 this.loading = true;
                 MoviesServices2.getMovies()
                 .then(reponse =>{ 
-                    this.movies = reponse.data;
+                    this.movies = reponse.data.data;
                 })
                 
                 .catch(error => {

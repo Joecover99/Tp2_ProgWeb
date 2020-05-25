@@ -1,7 +1,7 @@
 <template>
   
     <form @submit.prevent="submit">
-        //Nom ----------------------------
+        <!-- //Nom ---------------------------- -->
         <div class="form-group" :class="{ 'form-group--error': $v.fName.$error }">
             <label class="form__label">Prenom</label>
             <input class="form__input" v-model.trim="$v.fName.$model"/>
@@ -19,7 +19,7 @@
         <div class="error" v-if="!$v.fName.minLength">Last name is too short</div>
 
 
-        //Username ------------------------
+        <!-- //Username ------------------------ -->
         <div class="form-group" :class="{ 'form-group--error': $v.username.$error }">
             <label class="form__label">Nom d'utilisateur</label>
             <input class="form__input" v-model.trim="$v.username.$model"/>
@@ -28,7 +28,7 @@
         <div class="error" v-if="!$v.fName.maxLength">UserName is too long</div>
         <div class="error" v-if="!$v.fName.minLength">UserName is too short</div>
 
-        //Password -----------------------
+        <!-- //Password ----------------------- -->
         <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
             <label class="form__label">Mot de passe</label>
             <input class="form__input" type="password" v-model.trim="$v.password.$model"/>
@@ -43,16 +43,16 @@
         </div>
         <div class="error" v-if="!$v.lName.sameAsPassword">The password is not the same</div>
 
-        //Email ----------------------------
+        <!-- //Email ---------------------------- -->
         <div class="form-group" :class="{ 'form-group--error': $v.email.$error }">
             <label class="form__label">Courriel</label>
-            <input class="form__input" v-model.trim="$v.email.$model"/>
+            <input class="form__input" type="email" v-model.trim="$v.email.$model"/>
         </div>
         <div class="error" v-if="!$v.lName.required">Email is required</div>
         <div class="error" v-if="!$v.fName.maxLength">Email is too short</div>
         <div class="error" v-if="!$v.fName.email">Courriel does not exist</div>
 
-        //Button confirmation --------------
+        <!-- //Button confirmation -------------- -->
         <button class="button" type="submit" :disabled="submitStatus === 'PENDING'">Submit!</button>
 
         <p class="typo__p" v-if="submitStatus === 'OK'">Registration successful</p>
@@ -63,12 +63,17 @@
 </template>
 
 <script>
+import MoviesService from '../services/MoviesService.js'
 import { required, minLength, maxLength, email, sameAs } from 'vuelidate/lib/validators'
+import Vue from 'vue'
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
 
 export default {
     data() {
         return {
-        name: '',
+        fName: '',
+        lName: '',
         username: '',
         password: '',
         passwordConfimation: '',
@@ -111,16 +116,14 @@ export default {
     },
     methods: {
     submit() {
-      console.log('submit!')
       this.$v.$touch()
       if (this.$v.$invalid) {
-        this.submitStatus = 'ERROR'
+        console.log('ERROR')
       } else {
-        // do your submit logic here
-        this.submitStatus = 'PENDING'
-        setTimeout(() => {
-          this.submitStatus = 'OK'
-        }, 500)
+        MoviesService.createUser(this.fName, this.lName, this.username, this.password, this.email)
+        this.$router.push({ name: "Home"});
+        console.log('submit!')
+
       }
     }
   }
