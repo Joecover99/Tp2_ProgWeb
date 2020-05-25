@@ -1,14 +1,14 @@
 <template>
     <div class="Login">
-        <div :hidden="this.$parent.userIsAuth">
-            Login <input type="text" name="username" placeholder="Username" value="Utilisateur" v-model="login" @keyup.enter="logIn">
-        Mot De Passe <input type="password" name="password" placeholder="Password" value="Mot De Passe" v-model="password" @keyup.enter="logIn">
+        <div :hidden="this.$parent.userIsAuth || this.$parent.userIsConnected">
+            Login <input type="text" name="username" placeholder="Username" value="Utilisateur" v-model="login" maxlength="50" @keyup.enter="logIn">
+            Password <input type="password" name="password" placeholder="Password" value="Mot De Passe" v-model="password" maxlength="50" @keyup.enter="logIn">
         <br>
       <button @click="logIn" >Log in</button>
-      <p v-show="errorMessage">Mauvais Loggin / Mot De Passe</p>
+      <p v-show="errorMessage">Wrong Loggin / Password</p>
         </div>
-        <div v-show="this.$parent.userIsAuth">
-            <p>Bonjour : {{ logged_user }}</p>
+        <div v-show="this.$parent.userIsAuth || this.$parent.userIsConnected">
+            <p>Welcome : {{ logged_user }}</p>
         </div>
         
     </div>
@@ -17,8 +17,7 @@
 <script>
     export default {
         name: "login",
-        
-        
+    
         data() {
             return {
                 login: "",
@@ -38,17 +37,26 @@
         },
         methods: {
             logIn() {
-                if (this.login == this.ADMIN_LOG.default && this.password == this.ADMIN_PASS.default) {
+                if (this.login == this.ADMIN_LOG.default && this.password == this.ADMIN_PASS.default || this.login == "user" && this.password == "pass") {
                     this.logged_user = this.login
                     this.logged_pass = this.password
                     this.errorMessage = false
-                    this.$emit('Login::userIsAuth', {loginResult: true})
+                    if(this.logged_user ==this.ADMIN_LOG.default){
+                        this.$emit('Login::userIsAuth', {loginResult: true})
+                     }
+                     else{
+                        this.$emit('LoginU::userIsConnected', {loginResult: true})
+
+                     }
                 }
                 else{
                     this.errorMessage = true 
                     return false
                 }
-           
+                this.goto();
+            },
+            goto(){
+                 this.$router.push({ name: "Home"});
             }
         },
         
