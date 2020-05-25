@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld.vue';
 import MoviesCarousel from '../components/MoviesCarousel.vue';
 import Footer from '../components/Footer.vue';
 import NavBar from '../components/NavBar.vue';
@@ -17,7 +16,6 @@ import NavBar from '../components/NavBar.vue';
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
     MoviesCarousel,
     Footer,
     NavBar,

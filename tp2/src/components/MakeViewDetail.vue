@@ -3,7 +3,7 @@
         <h1>{{ movie.title }}</h1>
             <img :src= movie.image alt="Affiche du film">
             <div class="movieRating" >
-                <star-rating v-model="rating"></star-rating>
+                <star-rating :rating="overallStarRating"  :read-only="true" v-bind:increment="0.5"></star-rating>
             </div>
             <p><strong>overall Rating: </strong>{{overAllRating}}/ 100</p>
             <p><strong>number of votes : </strong>{{countNumberOfCritics}}</p>
@@ -18,10 +18,7 @@
                 <p><strong>First Name : </strong>{{actor.first_name}}</p>
                 <p><strong>Birth Date : </strong> {{actor.birthdate}}</p>
             </div>    
-           <Comment v-bind:critics="critics"/>
-           
-
-           
+           <Comment v-bind:critics="critics" v-show="this.$parent.$parent.userIsConnected"/>          
     </div>
 </template>
 
@@ -57,8 +54,25 @@ import Comment from '../components/Comments.vue'
             overAllRating(){
                 if(this.critics.length < 5){
                     return "N/D";
-                }else{
-                    return this.critics.score;
+                }
+                else{
+                    let overallScore = 0;
+                    this.critics.forEach(c => overallScore += Number(c.score));
+                    return (overallScore /= this.critics.length).toPrecision(3);
+                }
+            },
+            overallStarRating(){
+                if(this.critics.length < 5){
+                    return 0;
+                }
+                else{
+                    let overallScore = 0;
+                    let dividedScoreBy = 20;
+                    this.critics.forEach(c => overallScore += Number(c.score));
+                    overallScore = (overallScore /= this.critics.length).toPrecision(3);
+                    overallScore /=  dividedScoreBy;
+                    overallScore = Math.round(2*overallScore) / 2                  
+                    return overallScore;
                 }
             }
         },
