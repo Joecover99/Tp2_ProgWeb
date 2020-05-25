@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>{{ movie.title }}</h1>
-            <img :src= movie.image alt="Affiche du film">
+            <img  src=../assets/logo.png alt="Affiche du film">
             <p><strong>published : </strong>{{ movie.release_year }}</p>
             <p><strong>Time : </strong>{{ movie.length }} minutes</p>
             <p><strong>Rating : </strong>{{movie.rating}} </p>

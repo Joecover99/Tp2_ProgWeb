@@ -3,7 +3,7 @@
       <agile v-if="isActive" :autoplay="true" :navButtons="false" :dots="false" :centerMode="true" :initialSlide='0'>
         <div class="slide" v-for="movie in movies.data.slice(1)" :key="movie.id">
             <h2> {{ movie.title }}</h2>
-            <img :src="movie.image" alt="Affiche du film">
+            <img src=../assets/logo.png alt="Affiche du film">
             <div class="movieRating" >
                 <star-rating :rating="overallStarRating" :read-only="true" v-bind:increment="0.5"></star-rating>
             </div>  

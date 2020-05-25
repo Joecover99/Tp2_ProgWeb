@@ -1,15 +1,17 @@
 <template>
     <div class="NavBarResume">
         <div v-for=" movie in searchMovies" :key="movie.id">
-            <h2 @click="onSelect(movie)">{{ movie.title }}</h2>
-            <img :src="movie.image" @click="onSelect(movie)"  alt="Affiche du film">
-            <div class="movieRating" >
-                <star-rating :rating="overallStarRating" :read-only="true" v-bind:increment="0.5"></star-rating>
-            </div>
-            <p>Synopsis: {{ movie.description.slice(0,100) }} <strong v-if="movie.description.length > 100"> (...) </strong></p>
-            <p>Rating: {{movie.rating}}</p>
-            <p>Durée: {{movie.length}} minutes</p>
-            <button @click="onSelect(movie)">See more Details</button>
+
+                <h2 @click="onSelect(movie)">{{ movie.title }}</h2>
+                <img  src=../assets/logo.png @click="onSelect(movie)"  alt="Affiche du film">
+                <div class="movieRating" >
+                    <star-rating :rating="overallStarRating" :read-only="true" v-bind:increment="0.5"></star-rating>
+                </div>
+                <p>Synopsis: {{ movie.description.slice(0,100) }} <strong v-if="movie.description.length > 100"> (...) </strong></p>
+                <p>Rating: {{movie.rating }}</p>
+                <p>Durée: {{movie.length }} minutes</p>
+                <button @click="onSelect(movie)">See more Details</button>
+
         </div>
         <p :hidden="isNoResult">Aucun Resultat Trouvé</p>
     </div>
